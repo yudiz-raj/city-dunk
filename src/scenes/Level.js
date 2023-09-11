@@ -80,23 +80,23 @@ class Level extends Phaser.Scene {
 				const nRandomY = Math.floor(Math.random() * (778 - 272)) + 272;
 				const uperRing = this.ringGroup.create(this.container_upperRings.list[this.container_upperRings.list.length - 1].x + nRandomX, nRandomY, "upperRing");
 				uperRing.body.immovable = true;
-				uperRing.body.setSize(20, 1);
+				uperRing.body.setSize(20, 20);
 				uperRing.body.setOffset(342, 255);
 				this.container_upperRings.add(uperRing);
 
 				const lowerRing = this.ringGroup.create(uperRing.x, uperRing.y + 30, "lowerRing");
 				lowerRing.body.immovable = true;
-				lowerRing.body.setSize(20, 1);
+				lowerRing.body.setSize(20, 20);
 				lowerRing.body.setOffset(130, 225);
 				this.container_lowerRings.add(lowerRing);
 
 				const graphics = this.add.graphics();
-				graphics.fillRect(0, 0, 128, 0.2);
+				graphics.fillRect(0, 0, 150, 0.2);
 				const rectTexture = graphics.generateTexture();
-				const rectangle = this.colliderGroup.create(uperRing.x, uperRing.y + 20, rectTexture);
+				const rectangle = this.colliderGroup.create(uperRing.x, uperRing.y + 60, rectTexture);
 				rectangle.body.immovable = true;
-				rectangle.body.setSize(128, 0.2);
-				rectangle.body.setOffset(-50, 15);
+				rectangle.body.setSize(180, 0.2);
+				rectangle.body.setOffset(-80, 15);
 				rectangle.setVisible(false);
 				this.container_collider.add(rectangle);
 			}
@@ -107,12 +107,12 @@ class Level extends Phaser.Scene {
 		this.input.keyboard.createCursorKeys();
 		this.input.keyboard.on("keydown", (event) => {
 			if (event.code == "Space") {
-				ball.body.setVelocityY(-1200);
+				ball.body.setVelocityY(-2500);
 			}
 		}, this);
 
 		this.input.on("pointerdown", () => {
-			ball.body.setVelocityY(-1200);
+			ball.body.setVelocityY(-2500);
 			ball.angle -= 1;
 		});
 	}
@@ -129,31 +129,31 @@ class Level extends Phaser.Scene {
 		ball.setScale(0.5, 0.5);
 		ball.setName("ball");
 		ball.setCollideWorldBounds();
-		ball.weight = 1000;
+		ball.weight = 3500;
 		this.container_ball.add(ball);
-		ball.body.setGravityY(2000);
+		ball.body.setGravityY(5000);
 
 		const nRandomX = Math.floor(Math.random() * (700 - 500)) + 500;
 		const nRandomY = Math.floor(Math.random() * (778 - 272)) + 272;
 		const uperRing = this.ringGroup.create(ball.x + nRandomX, nRandomY, "upperRing");
 		uperRing.body.immovable = true;
-		uperRing.body.setSize(20, 1);
+		uperRing.body.setSize(20, 20);
 		uperRing.body.setOffset(342, 255);
 		this.container_upperRings.add(uperRing);
 
 		const lowerRing = this.ringGroup.create(uperRing.x, uperRing.y + 30, "lowerRing");
 		lowerRing.body.immovable = true;
-		lowerRing.body.setSize(20, 1);
+		lowerRing.body.setSize(20, 20);
 		lowerRing.body.setOffset(130, 225);
 		this.container_lowerRings.add(lowerRing);
 
 		const graphics = this.add.graphics();
-		graphics.fillRect(0, 0, 128, 0.02);
+		graphics.fillRect(0, 0, 150, 0.02);
 		const rectTexture = graphics.generateTexture();
-		const rectangle = this.colliderGroup.create(uperRing.x, uperRing.y + 20, rectTexture);
+		const rectangle = this.colliderGroup.create(uperRing.x, uperRing.y + 60, rectTexture);
 		rectangle.body.immovable = true;
-		rectangle.body.setSize(128, 0.02);
-		rectangle.body.setOffset(-50, 15);
+		rectangle.body.setSize(180, 0.02);
+		rectangle.body.setOffset(-80, 15);
 		rectangle.setVisible(false);
 		this.container_collider.add(rectangle);
 
@@ -164,6 +164,7 @@ class Level extends Phaser.Scene {
 		this.physics.add.collider(ball, this.ringGroup);
 		this.ringCollider = this.physics.add.collider(ball, this.colliderGroup, (ball, collider) => {
 			if (ball.y <= collider.y) {
+				
 				collider.body.checkCollision.up = false;
 			}
 			else {
