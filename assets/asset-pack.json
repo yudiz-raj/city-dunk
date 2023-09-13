@@ -2,6 +2,11 @@
     "section1": {
         "files": [
             {
+                "url": "assets/images/background.png",
+                "type": "image",
+                "key": "background"
+            },
+            {
                 "url": "assets/images/ball.png",
                 "type": "image",
                 "key": "ball"
@@ -30,6 +35,11 @@
                 "url": "src/scripts/SoundManager.js",
                 "type": "script",
                 "key": "SoundManager"
+            },
+            {
+                "url": "src/scripts/TweenManager.js",
+                "type": "script",
+                "key": "TweenManager"
             },
             {
                 "url": "assets/images/upperRing.png",

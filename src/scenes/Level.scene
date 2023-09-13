@@ -15,6 +15,21 @@
             "label": "body",
             "list": [
                 {
+                    "type": "TileSprite",
+                    "id": "43fde66a-5515-4d33-b5df-ebdc2a445847",
+                    "label": "background",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "background"
+                    },
+                    "y": 543,
+                    "scaleX": 0.5,
+                    "scaleY": 0.5,
+                    "originX": 0,
+                    "width": 8216,
+                    "height": 2191
+                },
+                {
                     "type": "Rectangle",
                     "id": "37aa60bc-e1fa-48d9-a5a6-59b42d9bfc72",
                     "label": "world_rect",

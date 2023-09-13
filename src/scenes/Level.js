@@ -19,6 +19,13 @@ class Level extends Phaser.Scene {
 		// body
 		const body = this.add.container(0, 0);
 
+		// background
+		const background = this.add.tileSprite(0, 543, 8216, 2191, "background");
+		background.scaleX = 0.5;
+		background.scaleY = 0.5;
+		background.setOrigin(0, 0.5);
+		body.add(background);
+
 		// world_rect
 		const world_rect = this.add.rectangle(960, 540, 1920, 1080);
 		body.add(world_rect);
@@ -45,6 +52,7 @@ class Level extends Phaser.Scene {
 		scoreTxt.setStyle({ "fontSize": "60px" });
 		body.add(scoreTxt);
 
+		this.background = background;
 		this.world_rect = world_rect;
 		this.container_upperRings = container_upperRings;
 		this.container_ball = container_ball;
@@ -55,6 +63,8 @@ class Level extends Phaser.Scene {
 		this.events.emit("scene-awake");
 	}
 
+	/** @type {Phaser.GameObjects.TileSprite} */
+	background;
 	/** @type {Phaser.GameObjects.Rectangle} */
 	world_rect;
 	/** @type {Phaser.GameObjects.Container} */
@@ -93,16 +103,15 @@ class Level extends Phaser.Scene {
 				const graphics = this.add.graphics();
 				graphics.fillRect(0, 0, 150, 0.2);
 				const rectTexture = graphics.generateTexture();
-				const rectangle = this.colliderGroup.create(uperRing.x, uperRing.y + 60, rectTexture);
+				const rectangle = this.colliderGroup.create(uperRing.x, uperRing.y + 40, rectTexture);
 				rectangle.body.immovable = true;
 				rectangle.body.setSize(180, 0.2);
 				rectangle.body.setOffset(-80, 15);
 				rectangle.setVisible(false);
 				this.container_collider.add(rectangle);
 			}
-		}, 1000);
+		}, 900);
 	}
-
 	handleBall(ball) {
 		this.input.keyboard.createCursorKeys();
 		this.input.keyboard.on("keydown", (event) => {
@@ -116,9 +125,26 @@ class Level extends Phaser.Scene {
 			ball.angle -= 1;
 		});
 	}
-
+	setParticle() {
+		this.emitter = this.add.particles('lowerRing');
+		this.emitter.createEmitter({
+			speed: 1000,
+			scale: { start: 1, end: 0 },
+			gravityX: -10000,
+			gravityY: 5000,
+			blendMode: 'ADD',
+			lifespan: { min: 500, max: 5000 },
+		});
+		this.emitter.setScale(0.1);
+		setTimeout(() => {
+			this.emitter.destroy();
+		}, 300);
+		this.emitter.setPosition(this.container_lowerRings.list[0].x, this.container_lowerRings.list[0].y);
+	}
 	create() {
 		this.editorCreate();
+
+		this.oTweenManager = new TweenManager(this);
 
 		this.ballsGroup = this.physics.add.group();
 		this.ringGroup = this.physics.add.group();
@@ -133,7 +159,7 @@ class Level extends Phaser.Scene {
 		this.container_ball.add(ball);
 		ball.body.setGravityY(5000);
 
-		const nRandomX = Math.floor(Math.random() * (700 - 500)) + 500;
+		const nRandomX = Math.floor(Math.random() * (800 - 600)) + 600;
 		const nRandomY = Math.floor(Math.random() * (778 - 272)) + 272;
 		const uperRing = this.ringGroup.create(ball.x + nRandomX, nRandomY, "upperRing");
 		uperRing.body.immovable = true;
@@ -150,7 +176,7 @@ class Level extends Phaser.Scene {
 		const graphics = this.add.graphics();
 		graphics.fillRect(0, 0, 150, 0.02);
 		const rectTexture = graphics.generateTexture();
-		const rectangle = this.colliderGroup.create(uperRing.x, uperRing.y + 60, rectTexture);
+		const rectangle = this.colliderGroup.create(uperRing.x, uperRing.y + 40, rectTexture);
 		rectangle.body.immovable = true;
 		rectangle.body.setSize(180, 0.02);
 		rectangle.body.setOffset(-80, 15);
@@ -164,37 +190,53 @@ class Level extends Phaser.Scene {
 		this.physics.add.collider(ball, this.ringGroup);
 		this.ringCollider = this.physics.add.collider(ball, this.colliderGroup, (ball, collider) => {
 			if (ball.y <= collider.y) {
-				
+				// this.setParticle();
 				collider.body.checkCollision.up = false;
+				collider.destroy();
+				this.container_lowerRings.list[0].destroy();
+				this.container_upperRings.list[0].destroy();
+				nScore += 5;
+				this.scoreTxt.setText("Score: " + nScore);
+				const popUpText = this.add.text(ball.x, ball.y + 20, "+5");
+				popUpText.setOrigin(0.5, 0.5);
+				popUpText.setStyle({ "fontSize": "60px" });
+				this.oTweenManager.popUPAnimation(popUpText);
 			}
 			else {
 				if (collider.body.checkCollision.up) {
+					const loseText = this.add.text(960, 540, "You Lose!");
+					loseText.setOrigin(0.5, 0.5);
+					loseText.setStyle({ "fontSize": "100px" });
+					this.oTweenManager.popUPAnimation(loseText);
 					this.scene.pause("Level");
 				}
 			}
 		});
 	}
-
 	update() {
+		this.ballsGroup.children.entries[0].angle += 2;
+		this.background.tilePositionX += 9;
 		this.container_collider.list.forEach((collider) => {
-			collider.x -= 6;
-			if (collider.x < this.container_ball.list[0].x - 200 && collider.body.checkCollision.up) {
+			collider.x -= 9;
+			if (collider.x < this.container_ball.list[0].x - 200) {
+				const loseText = this.add.text(960, 540, "You Lose!");
+				loseText.setOrigin(0.5, 0.5);
+				loseText.setStyle({ "fontSize": "100px" });
+				this.oTweenManager.popUPAnimation(loseText);
 				this.scene.pause("Level");
 			}
 			if (collider.x < -128) {
-				nScore += 5;
-				this.scoreTxt.setText("Score: " + nScore);
 				collider.destroy();
 			}
 		});
 		this.container_lowerRings.list.forEach((ring) => {
-			ring.x -= 6;
+			ring.x -= 9;
 			if (ring.x < -128) {
 				ring.destroy();
 			}
 		});
 		this.container_upperRings.list.forEach((ring) => {
-			ring.x -= 6;
+			ring.x -= 9;
 			if (ring.x < -128) {
 				ring.destroy();
 			}
