@@ -16,18 +16,16 @@
             "list": [
                 {
                     "type": "TileSprite",
-                    "id": "43fde66a-5515-4d33-b5df-ebdc2a445847",
+                    "id": "2763c230-6218-49c7-9625-413788e2d02c",
                     "label": "background",
                     "scope": "CLASS",
                     "texture": {
                         "key": "background"
                     },
-                    "y": 543,
-                    "scaleX": 0.5,
-                    "scaleY": 0.5,
+                    "y": 540,
                     "originX": 0,
-                    "width": 8216,
-                    "height": 2191
+                    "width": 3800,
+                    "height": 1100
                 },
                 {
                     "type": "Rectangle",
@@ -65,15 +63,26 @@
                     "scope": "CLASS"
                 },
                 {
+                    "type": "Image",
+                    "id": "553f2826-c6ca-405a-84db-7d0ac3054e07",
+                    "label": "score_bar",
+                    "texture": {
+                        "key": "score-bar"
+                    },
+                    "x": 960,
+                    "y": 37
+                },
+                {
                     "type": "Text",
                     "id": "f5dd9615-0c16-416b-b0e4-2eb11fbb647c",
                     "label": "scoreTxt",
                     "scope": "CLASS",
-                    "x": 960,
-                    "y": 70,
-                    "originX": 0.5,
+                    "x": 826,
+                    "y": 33,
                     "originY": 0.5,
-                    "fontSize": "60px"
+                    "fontFamily": "Skia",
+                    "fontSize": "48px",
+                    "color": "#FFA3DC"
                 }
             ]
         }

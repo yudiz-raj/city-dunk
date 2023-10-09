@@ -22,6 +22,9 @@ class Preload extends Phaser.Scene {
 	/** @returns {void} */
 	editorCreate() {
 
+		// background
+		this.add.image(1900, 540, "background");
+
 		// progress
 		const progress = this.add.text(960, 540, "", {});
 		progress.setOrigin(0.5, 0.5);
@@ -44,7 +47,7 @@ class Preload extends Phaser.Scene {
 
 		this.editorPreload();
 
-		this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Level"));
+		this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Home"));
 	}
 
 	/* END-USER-CODE */

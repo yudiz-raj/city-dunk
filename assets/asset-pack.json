@@ -2,19 +2,34 @@
     "section1": {
         "files": [
             {
-                "url": "assets/images/background.png",
-                "type": "image",
-                "key": "background"
-            },
-            {
                 "url": "assets/images/ball.png",
                 "type": "image",
                 "key": "ball"
             },
             {
+                "url": "assets/images/best-text.png",
+                "type": "image",
+                "key": "best-text"
+            },
+            {
                 "url": "src/scripts/GameManager.js",
                 "type": "script",
                 "key": "GameManager"
+            },
+            {
+                "url": "assets/images/grey-upper.png",
+                "type": "image",
+                "key": "grey-upper"
+            },
+            {
+                "url": "assets/images/grey-lower.png",
+                "type": "image",
+                "key": "grey-lower"
+            },
+            {
+                "url": "src/scenes/Home.js",
+                "type": "sceneFile",
+                "key": "Home"
             },
             {
                 "url": "src/scripts/InputManager.js",
@@ -25,6 +40,36 @@
                 "url": "assets/images/lowerRing.png",
                 "type": "image",
                 "key": "lowerRing"
+            },
+            {
+                "url": "assets/images/play-button.png",
+                "type": "image",
+                "key": "play-button"
+            },
+            {
+                "url": "assets/images/replay-button.png",
+                "type": "image",
+                "key": "replay-button"
+            },
+            {
+                "url": "src/scenes/Result.js",
+                "type": "sceneFile",
+                "key": "Result"
+            },
+            {
+                "url": "assets/images/score-bar.png",
+                "type": "image",
+                "key": "score-bar"
+            },
+            {
+                "url": "assets/images/score-board.png",
+                "type": "image",
+                "key": "score-board"
+            },
+            {
+                "url": "assets/images/score-text.png",
+                "type": "image",
+                "key": "score-text"
             },
             {
                 "url": "src/scripts/SocketManager.js",

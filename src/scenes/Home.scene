@@ -1,20 +1,17 @@
 {
-    "id": "04331fb6-ed91-4d74-b6e9-4bfe0fcfb457",
+    "id": "9d6271e8-712f-4f40-854e-6d6452f761da",
     "sceneType": "SCENE",
     "settings": {
-        "preloadMethodName": "editorPreload",
-        "preloadPackFiles": [
-            "starter-template-basic-typescript/assets/asset-pack.json"
-        ],
+        "preloadPackFiles": [],
         "createMethodName": "editorCreate",
-        "sceneKey": "Preload",
+        "sceneKey": "Home",
         "borderWidth": 1920,
         "borderHeight": 1080
     },
     "displayList": [
         {
             "type": "Image",
-            "id": "ed2f7970-8b20-440e-98ea-150f99142383",
+            "id": "2cefff79-ef31-4332-ac8a-f35c5a88d2f0",
             "label": "background",
             "texture": {
                 "key": "background"
@@ -23,18 +20,17 @@
             "y": 540
         },
         {
-            "type": "Text",
-            "id": "2ce42443-5227-4c9b-b498-e81f9a21cde3",
-            "label": "progress",
-            "components": [
-                "PreloadText"
-            ],
+            "type": "Image",
+            "id": "4262e97c-cb33-40a3-9af3-c19ea19a864d",
+            "label": "play_button",
+            "scope": "CLASS",
+            "texture": {
+                "key": "play-button"
+            },
             "x": 960,
-            "y": 540,
-            "originX": 0.5,
-            "originY": 0.5,
-            "text": "0%",
-            "fontSize": "54px"
+            "y": 802,
+            "scaleX": 0.5,
+            "scaleY": 0.5
         }
     ],
     "plainObjects": [],

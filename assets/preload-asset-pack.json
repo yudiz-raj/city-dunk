@@ -1,6 +1,12 @@
 {
     "section1": {
-        "files": []
+        "files": [
+            {
+                "url": "assets/images/background.png",
+                "type": "image",
+                "key": "background"
+            }
+        ]
     },
     "meta": {
         "app": "Phaser Editor 2D - Asset Pack Editor",
