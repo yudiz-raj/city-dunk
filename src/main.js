@@ -31,6 +31,7 @@ const init = () => {
 			},
 		}
 	});
+	localStorage.setItem('bestScore', localStorage.getItem('bestScore') == undefined ? 0 : localStorage.getItem('bestScore'));
 	game.scene.add("Preload", Preload);
 	game.scene.add("Level", Level);
 	game.scene.add("Boot", Boot, true);

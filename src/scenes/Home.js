@@ -40,8 +40,19 @@ class Home extends Phaser.Scene {
 
 		this.editorCreate();
 		this.oTweenManager = new TweenManager(this);
-		this.play_button.setInteractive().on("pointerdown", () => {
-			this.oTweenManager.buttonAnimation(this.play_button);
+		this.oTweenManager.buttonAnimation(this.play_button);
+		this.play_button.setInteractive();
+		this.play_button.on("pointerover", () => {
+			this.input.setDefaultCursor("pointer");
+			this.play_button.setScale(0.53, 0.53);
+		});
+		this.play_button.on("pointerout", () => {
+			this.input.setDefaultCursor("default");
+			this.play_button.setScale(0.5, 0.5);
+		});
+		this.play_button.on("pointerdown", () => {
+			this.input.setDefaultCursor("default");
+			this.oTweenManager.clickAnimation(this.play_button);
 		});
 	}
 

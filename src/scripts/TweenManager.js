@@ -10,22 +10,30 @@ class TweenManager {
             repeat: -1
         });
     }
-
+    buttonAnimation(target) {
+        this.oScene.tweens.add({
+            targets: target,
+            scaleX: 0.55,
+            duration: 500,
+            yoyo: true,
+            repeat: -1
+        });
+    }
     popUPAnimation(target) {
         this.oScene.tweens.add({
             targets: target,
+            y: "-=200",
             scaleX: 2,
             scaleY: 2,
-            duration: 300,
-            ease: "Power2",
-            yoyo: true,
+            alpha: 0,
+            duration: 1200,
+            ease: "Power3",
             onComplete: () => {
                 target.destroy();
             }
         });
     }
-
-    buttonAnimation(target) {
+    clickAnimation(target) {
         this.oScene.tweens.add({
             targets: target,
             scaleX: 0.4,

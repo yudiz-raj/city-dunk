@@ -76,19 +76,27 @@ class Result extends Phaser.Scene {
 	/* START-USER-CODE */
 
 	// Write your code here
-	init(result) {
-		this.result = result; 
-	}
-
 	create() {
 
 		this.editorCreate();
 		this.oTweenManager = new TweenManager(this);
 
-		this.score.setText(this.result.nScore);
-		this.best_score.setText(this.result.nBestScore);
-		this.replay_button.setInteractive().on("pointerdown", () => {
-			this.oTweenManager.buttonAnimation(this.replay_button);
+		this.score.setText(localStorage.getItem('currentScore'));
+		this.best_score.setText(localStorage.getItem('bestScore'));
+
+		this.oTweenManager.buttonAnimation(this.replay_button);
+		this.replay_button.setInteractive();
+		this.replay_button.on("pointerover", () => {
+			this.input.setDefaultCursor("pointer");
+			this.replay_button.setScale(0.53, 0.53);
+		});
+		this.replay_button.on("pointerout", () => {
+			this.input.setDefaultCursor("default");
+			this.replay_button.setScale(0.5, 0.5);
+		});
+		this.replay_button.on("pointerdown", () => {
+			this.input.setDefaultCursor("default");
+			this.oTweenManager.clickAnimation(this.replay_button);
 		})
 	}
 

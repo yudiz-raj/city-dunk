@@ -77,11 +77,12 @@
                     "id": "f5dd9615-0c16-416b-b0e4-2eb11fbb647c",
                     "label": "scoreTxt",
                     "scope": "CLASS",
-                    "x": 826,
+                    "x": 847,
                     "y": 33,
                     "originY": 0.5,
+                    "text": "Score: 00",
                     "fontFamily": "Skia",
-                    "fontSize": "48px",
+                    "fontSize": "40px",
                     "color": "#FFA3DC"
                 }
             ]
