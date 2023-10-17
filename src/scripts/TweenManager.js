@@ -2,6 +2,34 @@ class TweenManager {
     constructor(oScene) {
         this.oScene = oScene;
     }
+    logoAnimation(mask) {
+        this.oScene.tweens.add({
+            targets: this.oScene.logoPrefab.ball,
+            x: -98,
+            y: -213,
+            angle: '+=360',
+            duration: 1000,
+            onComplete: () => {
+                this.oScene.tweens.add({
+                    targets: this.oScene.logoPrefab.ball,
+                    x: 302,
+                    angle: '+=360',
+                    duration: 1000,
+                });
+                this.oScene.tweens.add({
+                    targets: this.oScene.logoPrefab.swing_img,
+                    alpha: 0,
+                    duration: 200,
+                    ease: "static",
+                });
+            }
+        });
+        this.oScene.tweens.add({
+            targets: mask,
+            x: 454,
+            duration: 1300,
+        });
+    }
     ballAnimation() {
         this.oScene.tweens.add({
             targets: this.oScene.ballsGroup.children.entries[0],
@@ -13,7 +41,7 @@ class TweenManager {
     buttonAnimation(target) {
         this.oScene.tweens.add({
             targets: target,
-            scaleX: 0.55,
+            scaleX: "+=0.05",
             duration: 500,
             yoyo: true,
             repeat: -1
@@ -36,8 +64,8 @@ class TweenManager {
     clickAnimation(target) {
         this.oScene.tweens.add({
             targets: target,
-            scaleX: 0.4,
-            scaleY: 0.4,
+            scaleX: "-=0.1",
+            scaleY: "-=0.1",
             duration: 200,
             ease: "elsatic",
             yoyo: true,

@@ -28,9 +28,19 @@
                 "key": "play-button"
             },
             "x": 960,
-            "y": 802,
-            "scaleX": 0.5,
-            "scaleY": 0.5
+            "y": 870
+        },
+        {
+            "prefabId": "caf3a9ac-360a-4e25-9521-0789d7a08f3c",
+            "id": "b9ff92a9-e0b0-4b47-aac9-40c8206e9137",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "logoPrefab",
+            "scope": "CLASS",
+            "x": 960,
+            "y": 479
         }
     ],
     "plainObjects": [],

@@ -5,6 +5,41 @@
                 "url": "assets/images/background.png",
                 "type": "image",
                 "key": "background"
+            },
+            {
+                "url": "assets/images/ball.png",
+                "type": "image",
+                "key": "ball"
+            },
+            {
+                "url": "assets/images/Logo.png",
+                "type": "image",
+                "key": "Logo"
+            },
+            {
+                "url": "assets/images/logo-1.png",
+                "type": "image",
+                "key": "logo-1"
+            },
+            {
+                "url": "assets/images/logo-ring.png",
+                "type": "image",
+                "key": "logo-ring"
+            },
+            {
+                "url": "assets/images/logo-ring2.png",
+                "type": "image",
+                "key": "logo-ring2"
+            },
+            {
+                "url": "src/prefabs/LogoPrefab.js",
+                "type": "script",
+                "key": "LogoPrefab"
+            },
+            {
+                "url": "assets/images/swing-img.png",
+                "type": "image",
+                "key": "swing-img"
             }
         ]
     },

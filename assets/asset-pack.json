@@ -2,11 +2,6 @@
     "section1": {
         "files": [
             {
-                "url": "assets/images/ball.png",
-                "type": "image",
-                "key": "ball"
-            },
-            {
                 "url": "assets/images/best-text.png",
                 "type": "image",
                 "key": "best-text"
@@ -17,14 +12,14 @@
                 "key": "GameManager"
             },
             {
-                "url": "assets/images/grey-upper.png",
-                "type": "image",
-                "key": "grey-upper"
-            },
-            {
                 "url": "assets/images/grey-lower.png",
                 "type": "image",
                 "key": "grey-lower"
+            },
+            {
+                "url": "assets/images/grey-upper.png",
+                "type": "image",
+                "key": "grey-upper"
             },
             {
                 "url": "src/scenes/Home.js",
