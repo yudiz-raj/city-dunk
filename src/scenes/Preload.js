@@ -23,7 +23,7 @@ class Preload extends Phaser.Scene {
 	editorCreate() {
 
 		// background
-		this.add.image(1900, 540, "background");
+		this.add.image(1877, 540, "background");
 
 		// progress
 		const progress = this.add.text(960, 540, "", {});

@@ -19,6 +19,7 @@
                     "type": "Image",
                     "id": "381ca4e3-be35-4ef4-a44e-86afbc8768a3",
                     "label": "background",
+                    "scope": "CLASS",
                     "texture": {
                         "key": "background"
                     },
@@ -29,6 +30,7 @@
                     "type": "Image",
                     "id": "6b3a3621-cba7-46b6-b037-efa52511d77d",
                     "label": "score_board",
+                    "scope": "CLASS",
                     "texture": {
                         "key": "score-board"
                     },
@@ -41,6 +43,7 @@
                     "type": "Image",
                     "id": "00cd901e-8c18-4479-acd8-c7b954ff69a7",
                     "label": "best_text",
+                    "scope": "CLASS",
                     "texture": {
                         "key": "best-text"
                     },
@@ -53,6 +56,7 @@
                     "type": "Image",
                     "id": "2b6df0b2-85ae-4d02-bdc5-54c3626bad48",
                     "label": "score_text",
+                    "scope": "CLASS",
                     "texture": {
                         "key": "score-text"
                     },

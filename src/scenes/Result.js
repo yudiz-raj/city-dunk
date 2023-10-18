@@ -59,6 +59,10 @@ class Result extends Phaser.Scene {
 		replay_button.scaleY = 0.5;
 		body.add(replay_button);
 
+		this.background = background;
+		this.score_board = score_board;
+		this.best_text = best_text;
+		this.score_text = score_text;
 		this.score = score;
 		this.best_score = best_score;
 		this.replay_button = replay_button;
@@ -66,6 +70,14 @@ class Result extends Phaser.Scene {
 		this.events.emit("scene-awake");
 	}
 
+	/** @type {Phaser.GameObjects.Image} */
+	background;
+	/** @type {Phaser.GameObjects.Image} */
+	score_board;
+	/** @type {Phaser.GameObjects.Image} */
+	best_text;
+	/** @type {Phaser.GameObjects.Image} */
+	score_text;
 	/** @type {Phaser.GameObjects.Text} */
 	score;
 	/** @type {Phaser.GameObjects.Text} */
@@ -80,9 +92,18 @@ class Result extends Phaser.Scene {
 
 		this.editorCreate();
 		this.oTweenManager = new TweenManager(this);
+		if (window.innerWidth < 1050) {
+			this.background.setX(360);
+			this.replay_button.setX(360);
+			this.score_board.setX(360).setScale(0.7, 0.7);
+			this.score_text.setX(360).setScale(0.7, 0.7);
+			this.score.setPosition(360, 513);
+			this.best_text.setPosition(360, 613).setScale(0.7, 0.7);
+			this.best_score.setPosition(360, 693);
+		}
 
 		this.score.setText(localStorage.getItem('currentScore'));
-		this.best_score.setText(localStorage.getItem('bestScore'));
+		this.best_score.setText(localStorage.getItem('circusSlamBestScore'));
 
 		this.oTweenManager.buttonAnimation(this.replay_button);
 		this.replay_button.setInteractive();

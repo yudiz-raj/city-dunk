@@ -66,6 +66,7 @@
                     "type": "Image",
                     "id": "553f2826-c6ca-405a-84db-7d0ac3054e07",
                     "label": "score_bar",
+                    "scope": "CLASS",
                     "texture": {
                         "key": "score-bar"
                     },

@@ -16,7 +16,7 @@
             "texture": {
                 "key": "background"
             },
-            "x": 1900,
+            "x": 1877,
             "y": 540
         },
         {
@@ -40,7 +40,7 @@
             "label": "logoPrefab",
             "scope": "CLASS",
             "x": 960,
-            "y": 479
+            "y": 489
         }
     ],
     "plainObjects": [],

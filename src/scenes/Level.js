@@ -60,6 +60,7 @@ class Level extends Phaser.Scene {
 		this.container_ball = container_ball;
 		this.container_collider = container_collider;
 		this.container_lowerRings = container_lowerRings;
+		this.score_bar = score_bar;
 		this.scoreTxt = scoreTxt;
 
 		this.events.emit("scene-awake");
@@ -77,6 +78,8 @@ class Level extends Phaser.Scene {
 	container_collider;
 	/** @type {Phaser.GameObjects.Container} */
 	container_lowerRings;
+	/** @type {Phaser.GameObjects.Image} */
+	score_bar;
 	/** @type {Phaser.GameObjects.Text} */
 	scoreTxt;
 
@@ -106,14 +109,18 @@ class Level extends Phaser.Scene {
 	}
 	checkResult() {
 		clearInterval(this.interval);
-		Number(localStorage.getItem("bestScore")) <= Number(this.nScore) ?
-			localStorage.setItem("bestScore", Number(this.nScore)) :
-			localStorage.setItem("bestScore", Number(localStorage.getItem("bestScore")));
+		Number(localStorage.getItem('circusSlamBestScore')) <= Number(this.nScore) ?
+			localStorage.setItem('circusSlamBestScore', Number(this.nScore)) :
+			localStorage.setItem('circusSlamBestScore', Number(localStorage.getItem('circusSlamBestScore')));
 		this.scene.stop("Level");
 		this.scene.start("Result");
 	}
 	create() {
 		this.editorCreate();
+		if (window.innerWidth < 1050) {
+			this.score_bar.setX(360);
+			this.scoreTxt.setX(247);
+		}
 		this.oTweenManager = new TweenManager(this);
 		this.nScore = 0;
 		localStorage.setItem('currentScore', 0);
@@ -122,7 +129,7 @@ class Level extends Phaser.Scene {
 		this.ringGroup = this.physics.add.group();
 		this.colliderGroup = this.physics.add.group();
 
-		const ball = this.ballsGroup.create(430, 460, "ball");
+		const ball = this.ballsGroup.create(400, 460, "ball");
 		ball.setCircle(ball.width / 2.2, 5, 5);
 		ball.setScale(0.8, 0.8);
 		ball.setName("ball");
@@ -237,5 +244,6 @@ class Level extends Phaser.Scene {
 	}
 	/* END-USER-CODE */
 }
+
 /* END OF COMPILED CODE */
 // You can write more code here

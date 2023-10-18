@@ -17,13 +17,13 @@ class Home extends Phaser.Scene {
 	editorCreate() {
 
 		// background
-		this.add.image(1900, 540, "background");
+		this.add.image(1877, 540, "background");
 
 		// play_button
 		const play_button = this.add.image(960, 870, "play-button");
 
 		// logoPrefab
-		const logoPrefab = new LogoPrefab(this, 960, 479);
+		const logoPrefab = new LogoPrefab(this, 960, 489);
 		this.add.existing(logoPrefab);
 
 		this.play_button = play_button;
@@ -46,11 +46,18 @@ class Home extends Phaser.Scene {
 		this.editorCreate();
 		this.oTweenManager = new TweenManager(this);
 		let shape = this.make.graphics();
-		shape.fillRect(0, 0, 500, 500);
+		if (window.innerWidth < 1050) {
+			this.logoPrefab.setScale(0.7, 0.7).setPosition(360, 350);
+			this.play_button.setX(360);
+			shape.fillRect(-450, 0, 400, 400);
+		}
+		else {
+			shape.fillRect(0, 0, 500, 500);
+		}
 		const mask = shape.createGeometryMask();
 		this.logoPrefab.swing_img.setMask(mask);
-		this.oTweenManager.buttonAnimation(this.play_button);
 		this.oTweenManager.logoAnimation(mask.geometryMask);
+		this.oTweenManager.buttonAnimation(this.play_button);
 		this.play_button.setInteractive();
 		this.play_button.on("pointerover", () => {
 			this.input.setDefaultCursor("pointer");
