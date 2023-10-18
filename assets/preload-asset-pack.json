@@ -12,9 +12,9 @@
                 "key": "ball"
             },
             {
-                "url": "assets/images/Logo.png",
+                "url": "assets/images/logo.png",
                 "type": "image",
-                "key": "Logo"
+                "key": "logo"
             },
             {
                 "url": "assets/images/logo-1.png",
