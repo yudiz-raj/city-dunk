@@ -24,6 +24,10 @@
             "id": "4262e97c-cb33-40a3-9af3-c19ea19a864d",
             "label": "play_button",
             "scope": "CLASS",
+            "hitArea.shape": "CIRCLE",
+            "hitArea.x": 80,
+            "hitArea.y": 80,
+            "hitArea.radius": 70,
             "texture": {
                 "key": "play-button"
             },

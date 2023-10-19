@@ -92,7 +92,7 @@ class Level extends Phaser.Scene {
 			if (this.container_upperRings.list[this.container_upperRings.list.length - 1].x < 2000) {
 				this.createRing();
 			}
-		}, 900);
+		}, 100);
 	}
 	handleBall(ball) {
 		this.input.keyboard.createCursorKeys();
@@ -136,16 +136,16 @@ class Level extends Phaser.Scene {
 		ball.setCollideWorldBounds();
 		ball.weight = 3500;
 		this.container_ball.add(ball);
-		ball.body.setGravityY(3000);
+		ball.body.setGravityY(3500);
 		this.oTweenManager.ballAnimation();
 
-		this.createRing();
 		this.generateRing();
+		this.createRing();
 		this.handleBall(ball);
 
 		this.scoreTxt.setText("Score: " + `0${this.nScore}`);
 		this.physics.add.collider(ball, this.ringGroup, (ball, ring) => {
-			ball.y < ring.body.y - 80 ? ball.body.setVelocityY(-200) : ball.body.setVelocityY(0);
+			ball.y < ring.body.y - 100 ? ball.body.setVelocityY(-300) : ball.body.setVelocityY(200);
 		});
 		this.ringCollider = this.physics.add.overlap(ball, this.colliderGroup, (ball, collider) => {
 			if (ball.y <= collider.y) {
@@ -176,6 +176,9 @@ class Level extends Phaser.Scene {
 		this.container_upperRings.list.length <= 0 ?
 			this.ringX = this.container_ball.list[0].x :
 			this.ringX = this.container_upperRings.list[this.container_upperRings.list.length - 1].x;
+		if (this.container_upperRings.list.length <= 0) {
+			console.log("empty");
+		}
 
 		const uperRing = this.ringGroup.create(this.ringX + nRandomX, nRandomY, "upperRing").setAngle(aAngle[nRandomAngle]);
 		if (nRandomAngle == 0) {
@@ -197,12 +200,12 @@ class Level extends Phaser.Scene {
 			this.ringValue = 10;
 		}
 		uperRing.body.immovable = true;
-		uperRing.setCircle(15, 210, 50 - this.nOffsetY);
+		uperRing.setCircle(15, 205, 50 - this.nOffsetY);
 		this.container_upperRings.add(uperRing);
 
 		const lowerRing = this.ringGroup.create(this.x, this.y, "lowerRing").setAngle(aAngle[nRandomAngle]);
 		lowerRing.body.immovable = true;
-		lowerRing.setCircle(15, 15, 10 + this.nOffsetY);
+		lowerRing.setCircle(15, 10, 5 + this.nOffsetY);
 		this.container_lowerRings.add(lowerRing);
 
 		const graphics = this.add.graphics();
@@ -225,21 +228,21 @@ class Level extends Phaser.Scene {
 			if (collider.x < this.container_ball.list[0].x - 200) {
 				this.checkResult();
 			}
-			if (collider.x < -90) {
-				collider.destroy();
-			}
+			// if (collider.x < -90) {
+			// 	collider.destroy();
+			// }
 		});
 		this.container_lowerRings.list.forEach((ring) => {
 			ring.x -= 7;
-			if (ring.x < -90) {
-				ring.destroy();
-			}
+			// if (ring.x < -90) {
+			// 	ring.destroy();
+			// }
 		});
 		this.container_upperRings.list.forEach((ring) => {
 			ring.x -= 7;
-			if (ring.x < -90) {
-				ring.destroy();
-			}
+			// if (ring.x < -90) {
+			// 	ring.destroy();
+			// }
 		})
 	}
 	/* END-USER-CODE */

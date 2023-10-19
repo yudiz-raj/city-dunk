@@ -21,6 +21,7 @@ class Home extends Phaser.Scene {
 
 		// play_button
 		const play_button = this.add.image(960, 870, "play-button");
+		play_button.setInteractive(new Phaser.Geom.Circle(80, 80, 70), Phaser.Geom.Circle.Contains);
 
 		// logoPrefab
 		const logoPrefab = new LogoPrefab(this, 960, 489);

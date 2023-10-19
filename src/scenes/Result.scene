@@ -96,6 +96,10 @@
                     "id": "f8d6498a-1906-4532-aaa0-af54d3d097e9",
                     "label": "replay_button",
                     "scope": "CLASS",
+                    "hitArea.shape": "CIRCLE",
+                    "hitArea.x": 140,
+                    "hitArea.y": 120,
+                    "hitArea.radius": 120,
                     "texture": {
                         "key": "replay-button"
                     },

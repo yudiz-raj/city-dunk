@@ -55,6 +55,7 @@ class Result extends Phaser.Scene {
 
 		// replay_button
 		const replay_button = this.add.image(960, 987, "replay-button");
+		replay_button.setInteractive(new Phaser.Geom.Circle(140, 120, 120), Phaser.Geom.Circle.Contains);
 		replay_button.scaleX = 0.5;
 		replay_button.scaleY = 0.5;
 		body.add(replay_button);
