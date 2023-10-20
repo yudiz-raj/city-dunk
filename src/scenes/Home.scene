@@ -29,7 +29,7 @@
             "hitArea.y": 80,
             "hitArea.radius": 70,
             "texture": {
-                "key": "play-button"
+                "key": "start-button"
             },
             "x": 960,
             "y": 870

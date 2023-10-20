@@ -12,6 +12,16 @@
                 "key": "ball"
             },
             {
+                "url": "assets/images/inner-bar.png",
+                "type": "image",
+                "key": "inner-bar"
+            },
+            {
+                "url": "assets/images/loading.png",
+                "type": "image",
+                "key": "loading"
+            },
+            {
                 "url": "assets/images/logo.png",
                 "type": "image",
                 "key": "logo"

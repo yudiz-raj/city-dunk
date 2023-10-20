@@ -15,6 +15,21 @@
             "label": "body",
             "list": [
                 {
+                    "type": "Rectangle",
+                    "id": "fb50a3cd-6117-40f6-a55d-cba2b8d3bf57",
+                    "label": "rectangle",
+                    "scope": "CLASS",
+                    "x": 960,
+                    "y": 1080,
+                    "ArcadeComponent.active": true,
+                    "physicsType": 1,
+                    "immovable": true,
+                    "body.width": 1920,
+                    "body.offset.y": 30,
+                    "isFilled": true,
+                    "width": 1920
+                },
+                {
                     "type": "TileSprite",
                     "id": "2763c230-6218-49c7-9625-413788e2d02c",
                     "label": "background",
@@ -85,6 +100,41 @@
                     "fontFamily": "Skia",
                     "fontSize": "40px",
                     "color": "#FFA3DC"
+                },
+                {
+                    "type": "Image",
+                    "id": "6f3a5e19-2cc6-47e7-a31b-3aa735e5fc6a",
+                    "label": "first_click",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "first-click"
+                    },
+                    "x": 960,
+                    "y": 735,
+                    "scaleX": 0.8,
+                    "scaleY": 0.8
+                },
+                {
+                    "type": "Image",
+                    "id": "9c390105-3826-48af-a8a8-0e3dea57171f",
+                    "label": "home_button",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "home-button"
+                    },
+                    "x": 70,
+                    "y": 68
+                },
+                {
+                    "type": "Image",
+                    "id": "f484cc38-eecf-48af-8428-9be00439db35",
+                    "label": "pause_button",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "pause-button"
+                    },
+                    "x": 1850,
+                    "y": 68
                 }
             ]
         }

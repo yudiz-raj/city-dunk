@@ -51,7 +51,8 @@
                         "key": "swing-img"
                     },
                     "x": -297,
-                    "y": -284
+                    "y": -284,
+                    "visible": false
                 },
                 {
                     "type": "Image",
@@ -62,7 +63,8 @@
                         "key": "ball"
                     },
                     "x": -504,
-                    "y": -400
+                    "y": -400,
+                    "visible": false
                 }
             ]
         }

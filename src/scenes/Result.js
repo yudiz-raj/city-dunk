@@ -54,11 +54,17 @@ class Result extends Phaser.Scene {
 		body.add(best_score);
 
 		// replay_button
-		const replay_button = this.add.image(960, 987, "replay-button");
+		const replay_button = this.add.image(1080, 987, "replay-button");
 		replay_button.setInteractive(new Phaser.Geom.Circle(140, 120, 120), Phaser.Geom.Circle.Contains);
 		replay_button.scaleX = 0.5;
 		replay_button.scaleY = 0.5;
 		body.add(replay_button);
+
+		// home_button
+		const home_button = this.add.image(840, 987, "home-button");
+		home_button.scaleX = 1.3;
+		home_button.scaleY = 1.3;
+		body.add(home_button);
 
 		this.background = background;
 		this.score_board = score_board;
@@ -67,6 +73,7 @@ class Result extends Phaser.Scene {
 		this.score = score;
 		this.best_score = best_score;
 		this.replay_button = replay_button;
+		this.home_button = home_button;
 
 		this.events.emit("scene-awake");
 	}
@@ -85,6 +92,8 @@ class Result extends Phaser.Scene {
 	best_score;
 	/** @type {Phaser.GameObjects.Image} */
 	replay_button;
+	/** @type {Phaser.GameObjects.Image} */
+	home_button;
 
 	/* START-USER-CODE */
 
@@ -119,6 +128,21 @@ class Result extends Phaser.Scene {
 		this.replay_button.on("pointerdown", () => {
 			this.input.setDefaultCursor("default");
 			this.oTweenManager.clickAnimation(this.replay_button);
+		});
+
+		this.oTweenManager.buttonAnimation(this.home_button);
+		this.home_button.setInteractive();
+		this.home_button.on("pointerover", () => {
+			this.input.setDefaultCursor("pointer");
+			this.home_button.setScale(1.33, 1.33);
+		});
+		this.home_button.on("pointerout", () => {
+			this.input.setDefaultCursor("default");
+			this.home_button.setScale(1.3, 1.3);
+		});
+		this.home_button.on("pointerdown", () => {
+			this.input.setDefaultCursor("default");
+			this.oTweenManager.clickAnimation(this.home_button);
 		})
 	}
 

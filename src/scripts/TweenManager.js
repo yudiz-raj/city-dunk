@@ -30,8 +30,34 @@ class TweenManager {
             duration: 1300,
         });
     }
+    instructionAnimation() {
+        this.ballTween = this.oScene.tweens.add({
+            targets: this.oScene.ballsGroup.children.entries[0],
+            y: '-=100',
+            ease: 'power2',
+            duration: 700,
+            delay: 0,
+            yoyo: true,
+            repeat: -1
+        });
+        this.clickTween = this.oScene.tweens.add({
+            targets: this.oScene.first_click,
+            duration: 700,
+            ease: 'Linear',
+            delay: 0,
+            scaleX: 0.8,
+            repeat: -1,
+            yoyo: true,
+            onYoyo: () => {
+                this.oScene.first_click.setTexture('second-click');
+            },
+            onRepeat: () => {
+                this.oScene.first_click.setTexture('first-click');
+            },
+        });
+    }
     ballAnimation() {
-        this.oScene.tweens.add({
+        this.ballRotationTween = this.oScene.tweens.add({
             targets: this.oScene.ballsGroup.children.entries[0],
             angle: '+=360',
             duration: 1000,
@@ -70,13 +96,17 @@ class TweenManager {
             ease: "elsatic",
             yoyo: true,
             onComplete: () => {
-                if (target.texture.key == "play-button") {
+                if (target.texture.key == "start-button") {
                     this.oScene.scene.stop("Home");
                     this.oScene.scene.start("Level");
                 }
-                else {
+                if (target.texture.key == "replay-button") {
                     this.oScene.scene.stop("Result");
                     this.oScene.scene.start("Level");
+                }
+                if(target.texture.key == "home-button") {
+                    this.oScene.scene.stop();
+                    this.oScene.scene.start("Home");
                 }
             }
         });

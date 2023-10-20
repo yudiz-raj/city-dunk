@@ -7,6 +7,11 @@
                 "key": "best-text"
             },
             {
+                "url": "assets/images/first-click.png",
+                "type": "image",
+                "key": "first-click"
+            },
+            {
                 "url": "src/scripts/GameManager.js",
                 "type": "script",
                 "key": "GameManager"
@@ -27,6 +32,11 @@
                 "key": "Home"
             },
             {
+                "url": "assets/images/home-button.png",
+                "type": "image",
+                "key": "home-button"
+            },
+            {
                 "url": "src/scripts/InputManager.js",
                 "type": "script",
                 "key": "InputManager"
@@ -35,6 +45,11 @@
                 "url": "assets/images/lowerRing.png",
                 "type": "image",
                 "key": "lowerRing"
+            },
+            {
+                "url": "assets/images/pause-button.png",
+                "type": "image",
+                "key": "pause-button"
             },
             {
                 "url": "assets/images/play-button.png",
@@ -67,6 +82,11 @@
                 "key": "score-text"
             },
             {
+                "url": "assets/images/second-click.png",
+                "type": "image",
+                "key": "second-click"
+            },
+            {
                 "url": "src/scripts/SocketManager.js",
                 "type": "script",
                 "key": "SocketManager"
@@ -75,6 +95,11 @@
                 "url": "src/scripts/SoundManager.js",
                 "type": "script",
                 "key": "SoundManager"
+            },
+            {
+                "url": "assets/images/start-button.png",
+                "type": "image",
+                "key": "start-button"
             },
             {
                 "url": "src/scripts/TweenManager.js",

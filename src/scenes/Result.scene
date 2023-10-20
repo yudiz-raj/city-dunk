@@ -103,10 +103,23 @@
                     "texture": {
                         "key": "replay-button"
                     },
-                    "x": 960,
+                    "x": 1080,
                     "y": 987,
                     "scaleX": 0.5,
                     "scaleY": 0.5
+                },
+                {
+                    "type": "Image",
+                    "id": "18439814-e2e0-4a65-95d3-9e9f1b35bbd0",
+                    "label": "home_button",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "home-button"
+                    },
+                    "x": 840,
+                    "y": 987,
+                    "scaleX": 1.3,
+                    "scaleY": 1.3
                 }
             ]
         }

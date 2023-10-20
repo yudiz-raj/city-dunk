@@ -23,18 +23,49 @@
             "y": 540
         },
         {
-            "type": "Text",
-            "id": "2ce42443-5227-4c9b-b498-e81f9a21cde3",
-            "label": "progress",
-            "components": [
-                "PreloadText"
-            ],
+            "type": "Image",
+            "id": "aa489ad7-3d4e-45cc-9b01-0a868873d4e8",
+            "label": "loading",
+            "texture": {
+                "key": "loading"
+            },
             "x": 960,
-            "y": 540,
-            "originX": 0.5,
+            "y": 913
+        },
+        {
+            "type": "Image",
+            "id": "a23a481e-a7a9-48e9-b43c-9008360e49d3",
+            "label": "innerBar",
+            "scope": "CLASS",
+            "texture": {
+                "key": "inner-bar"
+            },
+            "x": 764,
+            "y": 913,
+            "originX": 0,
+            "visible": false
+        },
+        {
+            "type": "Text",
+            "id": "a0ddba11-ae62-4ed0-84f7-124115c4a385",
+            "label": "text_1",
+            "x": 774,
+            "y": 877,
             "originY": 0.5,
-            "text": "0%",
-            "fontSize": "54px"
+            "text": "Loading...",
+            "fontFamily": "Skia",
+            "fontSize": "26px"
+        },
+        {
+            "prefabId": "caf3a9ac-360a-4e25-9521-0789d7a08f3c",
+            "id": "7ad09899-907e-4d85-9c8b-e1f8383df395",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "logoPrefab",
+            "x": 960,
+            "y": 489
         }
     ],
     "plainObjects": [],

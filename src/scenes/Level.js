@@ -18,6 +18,16 @@ class Level extends Phaser.Scene {
 		// body
 		const body = this.add.container(0, 0);
 
+		// rectangle
+		/** @type {Phaser.GameObjects.Rectangle & { body: Phaser.Physics.Arcade.StaticBody }} */
+		const rectangle = this.add.rectangle(960, 1080, 1920, 0);
+		this.physics.add.existing(rectangle, true);
+		rectangle.body.immovable = true;
+		rectangle.body.setOffset(0, 30);
+		rectangle.body.setSize(1920, 0, false);
+		rectangle.isFilled = true;
+		body.add(rectangle);
+
 		// background
 		const background = this.add.tileSprite(0, 540, 3800, 1100, "background");
 		background.setOrigin(0, 0.5);
@@ -54,6 +64,21 @@ class Level extends Phaser.Scene {
 		scoreTxt.setStyle({ "color": "#FFA3DC", "fontFamily": "Skia", "fontSize": "40px" });
 		body.add(scoreTxt);
 
+		// first_click
+		const first_click = this.add.image(960, 735, "first-click");
+		first_click.scaleX = 0.8;
+		first_click.scaleY = 0.8;
+		body.add(first_click);
+
+		// home_button
+		const home_button = this.add.image(70, 68, "home-button");
+		body.add(home_button);
+
+		// pause_button
+		const pause_button = this.add.image(1850, 68, "pause-button");
+		body.add(pause_button);
+
+		this.rectangle = rectangle;
 		this.background = background;
 		this.world_rect = world_rect;
 		this.container_upperRings = container_upperRings;
@@ -62,10 +87,15 @@ class Level extends Phaser.Scene {
 		this.container_lowerRings = container_lowerRings;
 		this.score_bar = score_bar;
 		this.scoreTxt = scoreTxt;
+		this.first_click = first_click;
+		this.home_button = home_button;
+		this.pause_button = pause_button;
 
 		this.events.emit("scene-awake");
 	}
 
+	/** @type {Phaser.GameObjects.Rectangle & { body: Phaser.Physics.Arcade.StaticBody }} */
+	rectangle;
 	/** @type {Phaser.GameObjects.TileSprite} */
 	background;
 	/** @type {Phaser.GameObjects.Rectangle} */
@@ -82,12 +112,17 @@ class Level extends Phaser.Scene {
 	score_bar;
 	/** @type {Phaser.GameObjects.Text} */
 	scoreTxt;
+	/** @type {Phaser.GameObjects.Image} */
+	first_click;
+	/** @type {Phaser.GameObjects.Image} */
+	home_button;
+	/** @type {Phaser.GameObjects.Image} */
+	pause_button;
 
 	/* START-USER-CODE */
 
 	// Write more your code here
 	generateRing() {
-
 		this.interval = setInterval(() => {
 			if (this.container_upperRings.list[this.container_upperRings.list.length - 1].x < 2000) {
 				this.createRing();
@@ -98,13 +133,17 @@ class Level extends Phaser.Scene {
 		this.input.keyboard.createCursorKeys();
 		this.input.keyboard.on("keydown", (event) => {
 			if (event.code == "Space") {
-				ball.body.setVelocityY(-1500);
+				if (this.enableEffect) {
+					ball.body.setVelocityY(-1500);
+				}
 			}
 		}, this);
 
 		this.input.on("pointerdown", () => {
-			ball.body.setVelocityY(-1500);
-			ball.angle -= 1;
+			if (this.enableEffect) {
+				ball.body.setVelocityY(-1500);
+				ball.angle -= 1;
+			}
 		});
 	}
 	checkResult() {
@@ -117,13 +156,57 @@ class Level extends Phaser.Scene {
 	}
 	create() {
 		this.editorCreate();
+		this.gameStart = false;
+		this.index = 0;
 		if (window.innerWidth < 1050) {
 			this.score_bar.setX(360);
 			this.scoreTxt.setX(247);
+			this.first_click.setX(360);
+			this.rectangle.setW(720).setX(360);
 		}
 		this.oTweenManager = new TweenManager(this);
 		this.nScore = 0;
 		localStorage.setItem('currentScore', 0);
+
+		this.pause_button.setInteractive()
+		this.pause_button.on("pointerover", () => {
+			this.input.setDefaultCursor("pointer");
+			this.pause_button.setScale(1.09, 1.09);
+		});
+		this.pause_button.on("pointerout", () => {
+			this.input.setDefaultCursor("default");
+			this.pause_button.setScale(1, 1);
+		});
+		this.pause_button.on("pointerdown", () => {
+			if (this.gameStart) {
+				this.enableEffect = false;
+				this.pause_button.setTexture("play-button");
+				this.gameStart = false;
+				ball.body.setVelocityY(0);
+				ball.body.setGravityY(0);
+				this.oTweenManager.ballRotationTween.stop();
+			}
+			else {
+				this.pause_button.setTexture("pause-button");
+				this.gameStart = true;
+				ball.body.setGravityY(3500);
+				this.oTweenManager.ballAnimation();
+				this.enableEffect = true;
+			}
+		});
+		this.home_button.setInteractive()
+		this.home_button.on("pointerover", () => {
+			this.input.setDefaultCursor("pointer");
+			this.home_button.setScale(1.09, 1.09);
+		});
+		this.home_button.on("pointerout", () => {
+			this.input.setDefaultCursor("default");
+			this.home_button.setScale(1, 1);
+		});
+		this.home_button.on("pointerdown", () => {
+			this.input.setDefaultCursor("default");
+			this.oTweenManager.clickAnimation(this.home_button);
+		});
 
 		this.ballsGroup = this.physics.add.group();
 		this.ringGroup = this.physics.add.group();
@@ -136,9 +219,16 @@ class Level extends Phaser.Scene {
 		ball.setCollideWorldBounds();
 		ball.weight = 3500;
 		this.container_ball.add(ball);
-		ball.body.setGravityY(3500);
-		this.oTweenManager.ballAnimation();
-
+		this.oTweenManager.instructionAnimation();
+		this.input.once("pointerdown", () => {
+			this.gameStart = true;
+			this.enableEffect = true;
+			ball.body.setGravityY(3500);
+			this.oTweenManager.ballAnimation();
+			this.oTweenManager.ballTween.stop();
+			this.oTweenManager.clickTween.stop();
+			this.first_click.destroy();
+		});
 		this.generateRing();
 		this.createRing();
 		this.handleBall(ball);
@@ -147,13 +237,14 @@ class Level extends Phaser.Scene {
 		this.physics.add.collider(ball, this.ringGroup, (ball, ring) => {
 			ball.y < ring.body.y - 100 ? ball.body.setVelocityY(-300) : ball.body.setVelocityY(200);
 		});
-		this.ringCollider = this.physics.add.overlap(ball, this.colliderGroup, (ball, collider) => {
+		this.physics.add.overlap(ball, this.colliderGroup, (ball, collider) => {
 			if (ball.y <= collider.y) {
 				collider.body.checkCollision.up = false;
 				collider.destroy();
-				this.container_lowerRings.list[0].setTexture("grey-lower");
-				this.container_upperRings.list[0].setTexture("grey-upper");
-				this.container_lowerRings.list[0].y += 6;
+				this.container_lowerRings.list[this.index].setTexture("grey-lower");
+				this.container_upperRings.list[this.index].setTexture("grey-upper");
+				this.container_lowerRings.list[this.index].y += 6;
+				this.index++;
 				const popUpText = this.add.text(ball.x, ball.y + 20, `+${collider.name}`);
 				popUpText.setOrigin(0.5, 0.5);
 				popUpText.setStyle({ "fontFamily": "Skia", "fontSize": "30px" });
@@ -168,6 +259,9 @@ class Level extends Phaser.Scene {
 				}
 			}
 		});
+		this.physics.add.collider(ball, this.rectangle, () => {
+			this.checkResult();
+		});
 	}
 	createRing() {
 		const nRandomX = Math.floor(Math.random() * (720 - 590)) + 590;
@@ -176,10 +270,6 @@ class Level extends Phaser.Scene {
 		this.container_upperRings.list.length <= 0 ?
 			this.ringX = this.container_ball.list[0].x :
 			this.ringX = this.container_upperRings.list[this.container_upperRings.list.length - 1].x;
-		if (this.container_upperRings.list.length <= 0) {
-			console.log("empty");
-		}
-
 		const uperRing = this.ringGroup.create(this.ringX + nRandomX, nRandomY, "upperRing").setAngle(aAngle[nRandomAngle]);
 		if (nRandomAngle == 0) {
 			this.nOffsetY = 0;
@@ -219,31 +309,24 @@ class Level extends Phaser.Scene {
 		this.container_collider.add(rectangle);
 	}
 	update() {
-		this.background.tilePositionX += 7;
-		if (!this.container_ball.list[0].body.blocked.none) {
-			this.checkResult();
+		if (this.gameStart) {
+			this.background.tilePositionX += 4;
+			// if (!this.container_ball.list[0].body.blocked.none) {
+			// 	this.checkResult();
+			// }
+			this.container_collider.list.forEach((collider) => {
+				collider.x -= 4;
+				if (collider.x < this.container_ball.list[0].x - 200) {
+					this.checkResult();
+				}
+			});
+			this.container_lowerRings.list.forEach((ring) => {
+				ring.x -= 4;
+			});
+			this.container_upperRings.list.forEach((ring) => {
+				ring.x -= 4;
+			});
 		}
-		this.container_collider.list.forEach((collider) => {
-			collider.x -= 7;
-			if (collider.x < this.container_ball.list[0].x - 200) {
-				this.checkResult();
-			}
-			// if (collider.x < -90) {
-			// 	collider.destroy();
-			// }
-		});
-		this.container_lowerRings.list.forEach((ring) => {
-			ring.x -= 7;
-			// if (ring.x < -90) {
-			// 	ring.destroy();
-			// }
-		});
-		this.container_upperRings.list.forEach((ring) => {
-			ring.x -= 7;
-			// if (ring.x < -90) {
-			// 	ring.destroy();
-			// }
-		})
 	}
 	/* END-USER-CODE */
 }

@@ -20,7 +20,7 @@ class Home extends Phaser.Scene {
 		this.add.image(1877, 540, "background");
 
 		// play_button
-		const play_button = this.add.image(960, 870, "play-button");
+		const play_button = this.add.image(960, 870, "start-button");
 		play_button.setInteractive(new Phaser.Geom.Circle(80, 80, 70), Phaser.Geom.Circle.Contains);
 
 		// logoPrefab
@@ -46,6 +46,8 @@ class Home extends Phaser.Scene {
 
 		this.editorCreate();
 		this.oTweenManager = new TweenManager(this);
+		this.logoPrefab.ball.setVisible(true);
+		this.logoPrefab.swing_img.setVisible(true);
 		let shape = this.make.graphics();
 		if (window.innerWidth < 1050) {
 			this.logoPrefab.setScale(0.7, 0.7).setPosition(360, 350);

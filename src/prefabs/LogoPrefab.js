@@ -22,10 +22,12 @@ class LogoPrefab extends Phaser.GameObjects.Container {
 
 		// swing_img
 		const swing_img = scene.add.image(-297, -284, "swing-img");
+		swing_img.visible = false;
 		this.add(swing_img);
 
 		// ball
 		const ball = scene.add.image(-504, -400, "ball");
+		ball.visible = false;
 		this.add(ball);
 
 		this.swing_img = swing_img;
