@@ -113,13 +113,17 @@
                     "id": "18439814-e2e0-4a65-95d3-9e9f1b35bbd0",
                     "label": "home_button",
                     "scope": "CLASS",
+                    "hitArea.shape": "CIRCLE",
+                    "hitArea.x": 140,
+                    "hitArea.y": 120,
+                    "hitArea.radius": 120,
                     "texture": {
                         "key": "home-button"
                     },
                     "x": 840,
                     "y": 987,
-                    "scaleX": 1.3,
-                    "scaleY": 1.3
+                    "scaleX": 0.5,
+                    "scaleY": 0.5
                 }
             ]
         }

@@ -62,8 +62,9 @@ class Result extends Phaser.Scene {
 
 		// home_button
 		const home_button = this.add.image(840, 987, "home-button");
-		home_button.scaleX = 1.3;
-		home_button.scaleY = 1.3;
+		home_button.setInteractive(new Phaser.Geom.Circle(140, 120, 120), Phaser.Geom.Circle.Contains);
+		home_button.scaleX = 0.5;
+		home_button.scaleY = 0.5;
 		body.add(home_button);
 
 		this.background = background;
@@ -134,11 +135,11 @@ class Result extends Phaser.Scene {
 		this.home_button.setInteractive();
 		this.home_button.on("pointerover", () => {
 			this.input.setDefaultCursor("pointer");
-			this.home_button.setScale(1.33, 1.33);
+			this.home_button.setScale(0.53, 0.53);
 		});
 		this.home_button.on("pointerout", () => {
 			this.input.setDefaultCursor("default");
-			this.home_button.setScale(1.3, 1.3);
+			this.home_button.setScale(0.5, 0.5);
 		});
 		this.home_button.on("pointerdown", () => {
 			this.input.setDefaultCursor("default");

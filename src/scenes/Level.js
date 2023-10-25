@@ -29,8 +29,7 @@ class Level extends Phaser.Scene {
 		body.add(rectangle);
 
 		// background
-		const background = this.add.tileSprite(0, 540, 3800, 1100, "background");
-		background.setOrigin(0, 0.5);
+		const background = this.add.tileSprite(1877, 540, 3754, 1088, "background");
 		body.add(background);
 
 		// world_rect
@@ -71,11 +70,17 @@ class Level extends Phaser.Scene {
 		body.add(first_click);
 
 		// home_button
-		const home_button = this.add.image(70, 68, "home-button");
+		const home_button = this.add.image(100, 100, "home-button");
+		home_button.setInteractive(new Phaser.Geom.Circle(140, 120, 120), Phaser.Geom.Circle.Contains);
+		home_button.scaleX = 0.5;
+		home_button.scaleY = 0.5;
 		body.add(home_button);
 
 		// pause_button
-		const pause_button = this.add.image(1850, 68, "pause-button");
+		const pause_button = this.add.image(1820, 100, "pause-button");
+		pause_button.setInteractive(new Phaser.Geom.Circle(140, 120, 120), Phaser.Geom.Circle.Contains);
+		pause_button.scaleX = 0.5;
+		pause_button.scaleY = 0.5;
 		body.add(pause_button);
 
 		this.rectangle = rectangle;
@@ -122,6 +127,13 @@ class Level extends Phaser.Scene {
 	/* START-USER-CODE */
 
 	// Write more your code here
+	setConfetti() {
+		confetti({
+			particleCount: 300,
+			spread: 100,
+			origin: { y: 0.8 },
+		  });
+	}
 	generateRing() {
 		this.interval = setInterval(() => {
 			if (this.container_upperRings.list[this.container_upperRings.list.length - 1].x < 2000) {
@@ -148,9 +160,13 @@ class Level extends Phaser.Scene {
 	}
 	checkResult() {
 		clearInterval(this.interval);
-		Number(localStorage.getItem('circusSlamBestScore')) <= Number(this.nScore) ?
-			localStorage.setItem('circusSlamBestScore', Number(this.nScore)) :
+		if ((localStorage.getItem('circusSlamBestScore')) <= Number(this.nScore)) {
+			localStorage.setItem('circusSlamBestScore', Number(this.nScore));
+			this.setConfetti();
+		}
+		else {
 			localStorage.setItem('circusSlamBestScore', Number(localStorage.getItem('circusSlamBestScore')));
+		}
 		this.scene.stop("Level");
 		this.scene.start("Result");
 	}
@@ -171,13 +187,14 @@ class Level extends Phaser.Scene {
 		this.pause_button.setInteractive()
 		this.pause_button.on("pointerover", () => {
 			this.input.setDefaultCursor("pointer");
-			this.pause_button.setScale(1.09, 1.09);
+			this.pause_button.setScale(0.53, 0.53);
 		});
 		this.pause_button.on("pointerout", () => {
 			this.input.setDefaultCursor("default");
-			this.pause_button.setScale(1, 1);
+			this.pause_button.setScale(0.5, 0.5);
 		});
 		this.pause_button.on("pointerdown", () => {
+			this.input.setDefaultCursor("default");
 			if (this.gameStart) {
 				this.enableEffect = false;
 				this.pause_button.setTexture("play-button");
@@ -197,11 +214,11 @@ class Level extends Phaser.Scene {
 		this.home_button.setInteractive()
 		this.home_button.on("pointerover", () => {
 			this.input.setDefaultCursor("pointer");
-			this.home_button.setScale(1.09, 1.09);
+			this.home_button.setScale(0.53, 0.53);
 		});
 		this.home_button.on("pointerout", () => {
 			this.input.setDefaultCursor("default");
-			this.home_button.setScale(1, 1);
+			this.home_button.setScale(0.5, 0.5);
 		});
 		this.home_button.on("pointerdown", () => {
 			this.input.setDefaultCursor("default");
@@ -268,7 +285,7 @@ class Level extends Phaser.Scene {
 		const nRandomY = Math.floor(Math.random() * (778 - 272)) + 272;
 		const nRandomAngle = Phaser.Math.Between(0, 2);
 		this.container_upperRings.list.length <= 0 ?
-			this.ringX = this.container_ball.list[0].x :
+			this.ringX = this.container_ball.list[0].x + 400 :
 			this.ringX = this.container_upperRings.list[this.container_upperRings.list.length - 1].x;
 		const uperRing = this.ringGroup.create(this.ringX + nRandomX, nRandomY, "upperRing").setAngle(aAngle[nRandomAngle]);
 		if (nRandomAngle == 0) {

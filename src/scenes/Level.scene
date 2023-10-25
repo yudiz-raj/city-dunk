@@ -31,16 +31,16 @@
                 },
                 {
                     "type": "TileSprite",
-                    "id": "2763c230-6218-49c7-9625-413788e2d02c",
+                    "id": "dff75e96-52fe-4335-9d37-908aacc24359",
                     "label": "background",
                     "scope": "CLASS",
                     "texture": {
                         "key": "background"
                     },
+                    "x": 1877,
                     "y": 540,
-                    "originX": 0,
-                    "width": 3800,
-                    "height": 1100
+                    "width": 3754,
+                    "height": 1088
                 },
                 {
                     "type": "Rectangle",
@@ -119,22 +119,34 @@
                     "id": "9c390105-3826-48af-a8a8-0e3dea57171f",
                     "label": "home_button",
                     "scope": "CLASS",
+                    "hitArea.shape": "CIRCLE",
+                    "hitArea.x": 140,
+                    "hitArea.y": 120,
+                    "hitArea.radius": 120,
                     "texture": {
                         "key": "home-button"
                     },
-                    "x": 70,
-                    "y": 68
+                    "x": 100,
+                    "y": 100,
+                    "scaleX": 0.5,
+                    "scaleY": 0.5
                 },
                 {
                     "type": "Image",
                     "id": "f484cc38-eecf-48af-8428-9be00439db35",
                     "label": "pause_button",
                     "scope": "CLASS",
+                    "hitArea.shape": "CIRCLE",
+                    "hitArea.x": 140,
+                    "hitArea.y": 120,
+                    "hitArea.radius": 120,
                     "texture": {
                         "key": "pause-button"
                     },
-                    "x": 1850,
-                    "y": 68
+                    "x": 1820,
+                    "y": 100,
+                    "scaleX": 0.5,
+                    "scaleY": 0.5
                 }
             ]
         }

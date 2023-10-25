@@ -17,7 +17,8 @@ class Home extends Phaser.Scene {
 	editorCreate() {
 
 		// background
-		this.add.image(1877, 540, "background");
+		const background = this.add.image(0, 540, "background");
+		background.setOrigin(0, 0.5);
 
 		// play_button
 		const play_button = this.add.image(960, 870, "start-button");
