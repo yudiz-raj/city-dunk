@@ -20,7 +20,7 @@ class Level extends Phaser.Scene {
 
 		// rectangle
 		/** @type {Phaser.GameObjects.Rectangle & { body: Phaser.Physics.Arcade.StaticBody }} */
-		const rectangle = this.add.rectangle(960, 1080, 1920, 0);
+		const rectangle = this.add.rectangle(967, 1080, 1920, 0);
 		this.physics.add.existing(rectangle, true);
 		rectangle.body.immovable = true;
 		rectangle.body.setOffset(0, 30);
@@ -29,12 +29,9 @@ class Level extends Phaser.Scene {
 		body.add(rectangle);
 
 		// background
-		const background = this.add.tileSprite(1877, 540, 3754, 1088, "background");
+		const background = this.add.tileSprite(0, 540, 3754, 1088, "background");
+		background.setOrigin(0, 0.5);
 		body.add(background);
-
-		// world_rect
-		const world_rect = this.add.rectangle(960, 540, 1920, 1080);
-		body.add(world_rect);
 
 		// container_upperRings
 		const container_upperRings = this.add.container(0, 0);
@@ -85,7 +82,6 @@ class Level extends Phaser.Scene {
 
 		this.rectangle = rectangle;
 		this.background = background;
-		this.world_rect = world_rect;
 		this.container_upperRings = container_upperRings;
 		this.container_ball = container_ball;
 		this.container_collider = container_collider;
@@ -103,8 +99,6 @@ class Level extends Phaser.Scene {
 	rectangle;
 	/** @type {Phaser.GameObjects.TileSprite} */
 	background;
-	/** @type {Phaser.GameObjects.Rectangle} */
-	world_rect;
 	/** @type {Phaser.GameObjects.Container} */
 	container_upperRings;
 	/** @type {Phaser.GameObjects.Container} */

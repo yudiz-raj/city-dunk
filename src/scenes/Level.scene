@@ -19,7 +19,7 @@
                     "id": "fb50a3cd-6117-40f6-a55d-cba2b8d3bf57",
                     "label": "rectangle",
                     "scope": "CLASS",
-                    "x": 960,
+                    "x": 967,
                     "y": 1080,
                     "ArcadeComponent.active": true,
                     "physicsType": 1,
@@ -37,20 +37,10 @@
                     "texture": {
                         "key": "background"
                     },
-                    "x": 1877,
                     "y": 540,
+                    "originX": 0,
                     "width": 3754,
                     "height": 1088
-                },
-                {
-                    "type": "Rectangle",
-                    "id": "37aa60bc-e1fa-48d9-a5a6-59b42d9bfc72",
-                    "label": "world_rect",
-                    "scope": "CLASS",
-                    "x": 960,
-                    "y": 540,
-                    "width": 1920,
-                    "height": 1080
                 },
                 {
                     "type": "Container",
