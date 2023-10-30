@@ -27,41 +27,54 @@ class Preload extends Phaser.Scene {
 		background.setOrigin(0, 0.5);
 
 		// loading
-		this.add.image(960, 913, "loading");
+		const loading = this.add.image(960, 913, "loading");
 
 		// innerBar
 		const innerBar = this.add.image(764, 913, "inner-bar");
 		innerBar.setOrigin(0, 0.5);
 		innerBar.visible = false;
 
-		// text_1
-		const text_1 = this.add.text(774, 877, "", {});
-		text_1.setOrigin(0, 0.5);
-		text_1.text = "Loading...";
-		text_1.setStyle({ "fontFamily": "Skia", "fontSize": "26px" });
+		// loading_text
+		const loading_text = this.add.text(774, 877, "", {});
+		loading_text.setOrigin(0, 0.5);
+		loading_text.text = "Loading...";
+		loading_text.setStyle({ "fontFamily": "Skia", "fontSize": "26px" });
 
 		// logoPrefab
 		const logoPrefab = new LogoPrefab(this, 960, 489);
 		this.add.existing(logoPrefab);
 
+		this.loading = loading;
 		this.innerBar = innerBar;
+		this.loading_text = loading_text;
+		this.logoPrefab = logoPrefab;
 
 		this.events.emit("scene-awake");
 	}
 
 	/** @type {Phaser.GameObjects.Image} */
+	loading;
+	/** @type {Phaser.GameObjects.Image} */
 	innerBar;
+	/** @type {Phaser.GameObjects.Text} */
+	loading_text;
+	/** @type {LogoPrefab} */
+	logoPrefab;
 
 	/* START-USER-CODE */
 
 	// Write your code here
 
 	preload() {
-
 		this.editorCreate();
-
+		
 		this.editorPreload();
-
+		if (window.innerWidth < 1050) {
+			this.logoPrefab.setScale(0.7, 0.7).setPosition(360, 350);
+			this.innerBar.setX(164);
+			this.loading.setX(360);
+			this.loading_text.setX(174);
+		}
 		this.isGameLoaded1 = false;
 		this.isGameLoaded2 = false;
 		this.load.on(Phaser.Loader.Events.COMPLETE, (p) => {

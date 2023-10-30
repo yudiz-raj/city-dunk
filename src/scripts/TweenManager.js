@@ -88,6 +88,7 @@ class TweenManager {
         });
     }
     clickAnimation(target) {
+        target.disableInteractive();
         this.oScene.tweens.add({
             targets: target,
             scaleX: "-=0.1",
@@ -108,6 +109,7 @@ class TweenManager {
                     this.oScene.scene.stop();
                     this.oScene.scene.start("Home");
                 }
+                target.setInteractive();
             }
         });
 

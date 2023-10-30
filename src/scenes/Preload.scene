@@ -26,6 +26,7 @@
             "type": "Image",
             "id": "aa489ad7-3d4e-45cc-9b01-0a868873d4e8",
             "label": "loading",
+            "scope": "CLASS",
             "texture": {
                 "key": "loading"
             },
@@ -48,7 +49,8 @@
         {
             "type": "Text",
             "id": "a0ddba11-ae62-4ed0-84f7-124115c4a385",
-            "label": "text_1",
+            "label": "loading_text",
+            "scope": "CLASS",
             "x": 774,
             "y": 877,
             "originY": 0.5,
@@ -64,6 +66,7 @@
                 "y"
             ],
             "label": "logoPrefab",
+            "scope": "CLASS",
             "x": 960,
             "y": 489
         }
