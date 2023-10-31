@@ -12,6 +12,10 @@ class LogoPrefab extends Phaser.GameObjects.Container {
 		const logo_ring2 = scene.add.image(77, 73, "logo-ring2");
 		this.add(logo_ring2);
 
+		// shadow
+		const shadow = scene.add.image(-2, -10, "shadow");
+		this.add(shadow);
+
 		// logo_1
 		const logo_1 = scene.add.image(0, 0, "logo-1");
 		this.add(logo_1);
@@ -30,6 +34,7 @@ class LogoPrefab extends Phaser.GameObjects.Container {
 		ball.visible = false;
 		this.add(ball);
 
+		this.shadow = shadow;
 		this.swing_img = swing_img;
 		this.ball = ball;
 
@@ -38,6 +43,8 @@ class LogoPrefab extends Phaser.GameObjects.Container {
 		/* END-USER-CTR-CODE */
 	}
 
+	/** @type {Phaser.GameObjects.Image} */
+	shadow;
 	/** @type {Phaser.GameObjects.Image} */
 	swing_img;
 	/** @type {Phaser.GameObjects.Image} */

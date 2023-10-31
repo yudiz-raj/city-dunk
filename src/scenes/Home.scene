@@ -10,6 +10,21 @@
     },
     "displayList": [
         {
+            "type": "Rectangle",
+            "id": "5ad688e0-03cb-47d6-80c0-b4ce53924234",
+            "label": "rectangle",
+            "scope": "CLASS",
+            "x": 960,
+            "y": 1010,
+            "ArcadeComponent.active": true,
+            "physicsType": 1,
+            "body.width": 128,
+            "body.height": 140,
+            "isFilled": true,
+            "width": 128,
+            "height": 140
+        },
+        {
             "type": "Image",
             "id": "2cefff79-ef31-4332-ac8a-f35c5a88d2f0",
             "label": "background",
@@ -18,6 +33,18 @@
             },
             "y": 540,
             "originX": 0
+        },
+        {
+            "prefabId": "caf3a9ac-360a-4e25-9521-0789d7a08f3c",
+            "id": "b9ff92a9-e0b0-4b47-aac9-40c8206e9137",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "logoPrefab",
+            "scope": "CLASS",
+            "x": 960,
+            "y": 489
         },
         {
             "type": "Image",
@@ -32,19 +59,11 @@
                 "key": "start-button"
             },
             "x": 960,
-            "y": 870
-        },
-        {
-            "prefabId": "caf3a9ac-360a-4e25-9521-0789d7a08f3c",
-            "id": "b9ff92a9-e0b0-4b47-aac9-40c8206e9137",
-            "unlock": [
-                "x",
-                "y"
-            ],
-            "label": "logoPrefab",
-            "scope": "CLASS",
-            "x": 960,
-            "y": 489
+            "y": -82,
+            "ArcadeComponent.active": true,
+            "bodyGeometry": 0,
+            "body.width": 128,
+            "body.height": 128
         }
     ],
     "plainObjects": [],

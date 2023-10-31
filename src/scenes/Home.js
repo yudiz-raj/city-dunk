@@ -16,28 +16,41 @@ class Home extends Phaser.Scene {
 	/** @returns {void} */
 	editorCreate() {
 
+		// rectangle
+		/** @type {Phaser.GameObjects.Rectangle & { body: Phaser.Physics.Arcade.StaticBody }} */
+		const rectangle = this.add.rectangle(960, 1010, 128, 140);
+		this.physics.add.existing(rectangle, true);
+		rectangle.body.setSize(128, 140, false);
+		rectangle.isFilled = true;
+
 		// background
 		const background = this.add.image(0, 540, "background");
 		background.setOrigin(0, 0.5);
-
-		// play_button
-		const play_button = this.add.image(960, 870, "start-button");
-		play_button.setInteractive(new Phaser.Geom.Circle(80, 80, 70), Phaser.Geom.Circle.Contains);
 
 		// logoPrefab
 		const logoPrefab = new LogoPrefab(this, 960, 489);
 		this.add.existing(logoPrefab);
 
-		this.play_button = play_button;
+		// play_button
+		/** @type {Phaser.GameObjects.Image & { body: Phaser.Physics.Arcade.Body }} */
+		const play_button = this.add.image(960, -82, "start-button");
+		play_button.setInteractive(new Phaser.Geom.Circle(80, 80, 70), Phaser.Geom.Circle.Contains);
+		this.physics.add.existing(play_button, false);
+		play_button.body.setCircle(64);
+
+		this.rectangle = rectangle;
 		this.logoPrefab = logoPrefab;
+		this.play_button = play_button;
 
 		this.events.emit("scene-awake");
 	}
 
-	/** @type {Phaser.GameObjects.Image} */
-	play_button;
+	/** @type {Phaser.GameObjects.Rectangle & { body: Phaser.Physics.Arcade.StaticBody }} */
+	rectangle;
 	/** @type {LogoPrefab} */
 	logoPrefab;
+	/** @type {Phaser.GameObjects.Image & { body: Phaser.Physics.Arcade.Body }} */
+	play_button;
 
 	/* START-USER-CODE */
 
@@ -49,6 +62,7 @@ class Home extends Phaser.Scene {
 		this.oTweenManager = new TweenManager(this);
 		this.logoPrefab.ball.setVisible(true);
 		this.logoPrefab.swing_img.setVisible(true);
+		this.play_button.body.setGravityY(2000).setBounce(0.5);
 		let shape = this.make.graphics();
 		if (window.innerWidth < 1050) {
 			this.logoPrefab.setScale(0.7, 0.7).setPosition(360, 350);
@@ -74,6 +88,9 @@ class Home extends Phaser.Scene {
 		this.play_button.on("pointerdown", () => {
 			this.input.setDefaultCursor("default");
 			this.oTweenManager.clickAnimation(this.play_button);
+		});
+		this.physics.add.collider(this.play_button, this.rectangle, ()=>{
+			this.play_button.body.setBounce(0.5);
 		});
 	}
 

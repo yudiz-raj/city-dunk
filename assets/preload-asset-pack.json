@@ -47,6 +47,11 @@
                 "key": "LogoPrefab"
             },
             {
+                "url": "assets/images/shadow.png",
+                "type": "image",
+                "key": "shadow"
+            },
+            {
                 "url": "assets/images/swing-img.png",
                 "type": "image",
                 "key": "swing-img"

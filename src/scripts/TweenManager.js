@@ -25,6 +25,15 @@ class TweenManager {
             }
         });
         this.oScene.tweens.add({
+            targets: this.oScene.logoPrefab.shadow,
+            alpha: 0,
+            ease: "static.easeOut",
+            duration: 500,
+            delay: 0,    
+            yoyo: true,
+            repeat: -1,
+        });
+        this.oScene.tweens.add({
             targets: mask,
             x: 454,
             duration: 1300,

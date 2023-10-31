@@ -26,6 +26,17 @@
                 },
                 {
                     "type": "Image",
+                    "id": "71908497-0f5e-486d-8bf3-179d8a34a792",
+                    "label": "shadow",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "shadow"
+                    },
+                    "x": -2,
+                    "y": -10
+                },
+                {
+                    "type": "Image",
                     "id": "b754796d-b31c-4723-b6b0-a5c930840066",
                     "label": "logo_1",
                     "texture": {
