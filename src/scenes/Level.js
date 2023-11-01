@@ -126,7 +126,7 @@ class Level extends Phaser.Scene {
 			particleCount: 300,
 			spread: 100,
 			origin: { y: 0.8 },
-		  });
+		});
 	}
 	generateRing() {
 		this.interval = setInterval(() => {
@@ -167,6 +167,7 @@ class Level extends Phaser.Scene {
 	create() {
 		this.editorCreate();
 		this.gameStart = false;
+		this.gameOver = false;
 		this.index = 0;
 		if (window.innerWidth < 1050) {
 			this.score_bar.setX(360);
@@ -178,7 +179,9 @@ class Level extends Phaser.Scene {
 		this.nScore = 0;
 		localStorage.setItem('currentScore', 0);
 
-		this.pause_button.setInteractive()
+		this.oTweenManager.buttonAnimation(this.pause_button);
+		this.oTweenManager.buttonAnimation(this.home_button);
+		this.pause_button.setInteractive();
 		this.pause_button.on("pointerover", () => {
 			this.input.setDefaultCursor("pointer");
 			this.pause_button.setScale(0.53, 0.53);
@@ -270,8 +273,16 @@ class Level extends Phaser.Scene {
 				}
 			}
 		});
-		this.physics.add.collider(ball, this.rectangle, () => {
-			this.checkResult();
+		this.surfacecollider = this.physics.add.collider(ball, this.rectangle, () => {
+			ball.body.setVelocityY(-1200);
+			this.input.enabled = false;
+			this.input.keyboard.enabled = false;
+			if (!this.gameOver) {
+				this.gameOver = true;
+				setTimeout(() => {
+					this.checkResult();
+				}, 1000);
+			}
 		});
 	}
 	createRing() {
@@ -322,12 +333,9 @@ class Level extends Phaser.Scene {
 	update() {
 		if (this.gameStart) {
 			this.background.tilePositionX += 4;
-			// if (!this.container_ball.list[0].body.blocked.none) {
-			// 	this.checkResult();
-			// }
 			this.container_collider.list.forEach((collider) => {
 				collider.x -= 4;
-				if (collider.x < this.container_ball.list[0].x - 200) {
+				if (collider.x < this.container_ball.list[0].x - 200 && !this.gameOver) {
 					this.checkResult();
 				}
 			});

@@ -10,21 +10,6 @@
     },
     "displayList": [
         {
-            "type": "Rectangle",
-            "id": "5ad688e0-03cb-47d6-80c0-b4ce53924234",
-            "label": "rectangle",
-            "scope": "CLASS",
-            "x": 960,
-            "y": 1010,
-            "ArcadeComponent.active": true,
-            "physicsType": 1,
-            "body.width": 128,
-            "body.height": 140,
-            "isFilled": true,
-            "width": 128,
-            "height": 140
-        },
-        {
             "type": "Image",
             "id": "2cefff79-ef31-4332-ac8a-f35c5a88d2f0",
             "label": "background",
@@ -59,11 +44,7 @@
                 "key": "start-button"
             },
             "x": 960,
-            "y": -82,
-            "ArcadeComponent.active": true,
-            "bodyGeometry": 0,
-            "body.width": 128,
-            "body.height": 128
+            "y": -82
         }
     ],
     "plainObjects": [],

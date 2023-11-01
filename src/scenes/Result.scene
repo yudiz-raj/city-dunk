@@ -27,103 +27,121 @@
                     "y": 540
                 },
                 {
-                    "type": "Image",
-                    "id": "6b3a3621-cba7-46b6-b037-efa52511d77d",
-                    "label": "score_board",
+                    "type": "Container",
+                    "id": "265b2870-de7e-4764-adfd-a4a79ccd984c",
+                    "label": "container_scoreBoard",
                     "scope": "CLASS",
-                    "texture": {
-                        "key": "score-board"
-                    },
-                    "x": 960,
-                    "y": 540,
-                    "scaleX": 0.9,
-                    "scaleY": 0.9
+                    "y": -916,
+                    "list": [
+                        {
+                            "type": "Image",
+                            "id": "6b3a3621-cba7-46b6-b037-efa52511d77d",
+                            "label": "score_board",
+                            "scope": "CLASS",
+                            "texture": {
+                                "key": "score-board"
+                            },
+                            "x": 960,
+                            "y": 539,
+                            "scaleX": 0.9,
+                            "scaleY": 0.9
+                        },
+                        {
+                            "type": "Image",
+                            "id": "00cd901e-8c18-4479-acd8-c7b954ff69a7",
+                            "label": "best_text",
+                            "scope": "CLASS",
+                            "texture": {
+                                "key": "best-text"
+                            },
+                            "x": 960,
+                            "y": 649,
+                            "scaleX": 0.9,
+                            "scaleY": 0.9
+                        },
+                        {
+                            "type": "Image",
+                            "id": "2b6df0b2-85ae-4d02-bdc5-54c3626bad48",
+                            "label": "score_text",
+                            "scope": "CLASS",
+                            "texture": {
+                                "key": "score-text"
+                            },
+                            "x": 960,
+                            "y": 432,
+                            "scaleX": 0.9,
+                            "scaleY": 0.9
+                        },
+                        {
+                            "type": "Text",
+                            "id": "26c0b9aa-c54c-4fcd-a9b9-9855011e82da",
+                            "label": "score",
+                            "scope": "CLASS",
+                            "x": 960,
+                            "y": 525,
+                            "originX": 0.5,
+                            "originY": 0.5,
+                            "fontFamily": "Skia",
+                            "fontSize": "66px",
+                            "color": "#FFCB4F"
+                        },
+                        {
+                            "type": "Text",
+                            "id": "e215d054-278c-4deb-ad6b-3df9faf3fbfb",
+                            "label": "best_score",
+                            "scope": "CLASS",
+                            "x": 960,
+                            "y": 741,
+                            "originX": 0.5,
+                            "originY": 0.5,
+                            "fontFamily": "Skia",
+                            "fontSize": "66px",
+                            "color": "#FFCB4F"
+                        }
+                    ]
                 },
                 {
-                    "type": "Image",
-                    "id": "00cd901e-8c18-4479-acd8-c7b954ff69a7",
-                    "label": "best_text",
+                    "type": "Container",
+                    "id": "ac85fb6d-c366-476b-b52e-057fae29456b",
+                    "label": "container_buttons",
                     "scope": "CLASS",
-                    "texture": {
-                        "key": "best-text"
-                    },
-                    "x": 960,
-                    "y": 650,
-                    "scaleX": 0.9,
-                    "scaleY": 0.9
-                },
-                {
-                    "type": "Image",
-                    "id": "2b6df0b2-85ae-4d02-bdc5-54c3626bad48",
-                    "label": "score_text",
-                    "scope": "CLASS",
-                    "texture": {
-                        "key": "score-text"
-                    },
-                    "x": 960,
-                    "y": 433,
-                    "scaleX": 0.9,
-                    "scaleY": 0.9
-                },
-                {
-                    "type": "Text",
-                    "id": "26c0b9aa-c54c-4fcd-a9b9-9855011e82da",
-                    "label": "score",
-                    "scope": "CLASS",
-                    "x": 960,
-                    "y": 526,
-                    "originX": 0.5,
-                    "originY": 0.5,
-                    "fontFamily": "Skia",
-                    "fontSize": "66px",
-                    "color": "#FFCB4F"
-                },
-                {
-                    "type": "Text",
-                    "id": "e215d054-278c-4deb-ad6b-3df9faf3fbfb",
-                    "label": "best_score",
-                    "scope": "CLASS",
-                    "x": 960,
-                    "y": 742,
-                    "originX": 0.5,
-                    "originY": 0.5,
-                    "fontFamily": "Skia",
-                    "fontSize": "66px",
-                    "color": "#FFCB4F"
-                },
-                {
-                    "type": "Image",
-                    "id": "f8d6498a-1906-4532-aaa0-af54d3d097e9",
-                    "label": "replay_button",
-                    "scope": "CLASS",
-                    "hitArea.shape": "CIRCLE",
-                    "hitArea.x": 140,
-                    "hitArea.y": 120,
-                    "hitArea.radius": 120,
-                    "texture": {
-                        "key": "replay-button"
-                    },
-                    "x": 1080,
-                    "y": 987,
-                    "scaleX": 0.5,
-                    "scaleY": 0.5
-                },
-                {
-                    "type": "Image",
-                    "id": "18439814-e2e0-4a65-95d3-9e9f1b35bbd0",
-                    "label": "home_button",
-                    "scope": "CLASS",
-                    "hitArea.shape": "CIRCLE",
-                    "hitArea.x": 140,
-                    "hitArea.y": 120,
-                    "hitArea.radius": 120,
-                    "texture": {
-                        "key": "home-button"
-                    },
-                    "x": 840,
-                    "y": 987,
-                    "scaleX": 0.5,
-                    "scaleY": 0.5
+                    "y": 1080,
+                    "list": [
+                        {
+                            "type": "Image",
+                            "id": "f8d6498a-1906-4532-aaa0-af54d3d097e9",
+                            "label": "replay_button",
+                            "scope": "CLASS",
+                            "hitArea.shape": "CIRCLE",
+                            "hitArea.x": 140,
+                            "hitArea.y": 120,
+                            "hitArea.radius": 120,
+                            "texture": {
+                                "key": "replay-button"
+                            },
+                            "x": 1080,
+                            "y": 986,
+                            "scaleX": 0.5,
+                            "scaleY": 0.5
+                        },
+                        {
+                            "type": "Image",
+                            "id": "18439814-e2e0-4a65-95d3-9e9f1b35bbd0",
+                            "label": "home_button",
+                            "scope": "CLASS",
+                            "hitArea.shape": "CIRCLE",
+                            "hitArea.x": 140,
+                            "hitArea.y": 120,
+                            "hitArea.radius": 120,
+                            "texture": {
+                                "key": "home-button"
+                            },
+                            "x": 840,
+                            "y": 986,
+                            "scaleX": 0.5,
+                            "scaleY": 0.5
+                        }
+                    ]
                 }
             ]
         }

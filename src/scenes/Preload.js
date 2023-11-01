@@ -69,6 +69,15 @@ class Preload extends Phaser.Scene {
 		this.editorCreate();
 		
 		this.editorPreload();
+		this.tweens.add({
+            targets: this.logoPrefab.shadow,
+            alpha: 0,
+            ease: "static.easeOut",
+            duration: 500,
+            delay: 0,
+            yoyo: true,
+            repeat: -1,
+        });
 		if (window.innerWidth < 1050) {
 			this.logoPrefab.setScale(0.7, 0.7).setPosition(360, 350);
 			this.innerBar.setX(164);

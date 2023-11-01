@@ -29,13 +29,19 @@ class TweenManager {
             alpha: 0,
             ease: "static.easeOut",
             duration: 500,
-            delay: 0,    
+            delay: 0,
             yoyo: true,
             repeat: -1,
         });
         this.oScene.tweens.add({
             targets: mask,
             x: 454,
+            duration: 1300,
+        });
+        this.oScene.tweens.add({
+            targets: this.oScene.play_button,
+            y: 870,
+            ease: "bounce",
             duration: 1300,
         });
     }
@@ -107,20 +113,34 @@ class TweenManager {
             yoyo: true,
             onComplete: () => {
                 if (target.texture.key == "start-button") {
-                    this.oScene.scene.stop("Home");
-                    this.oScene.scene.start("Level");
+                    this.oScene.tweens.add({
+                        targets: this.oScene.play_button,
+                        y: 1200,
+                        duration: 500,
+                        onComplete: () => {
+                            this.oScene.scene.stop("Home");
+                            this.oScene.scene.start("Level");
+                        }
+                    });
                 }
                 if (target.texture.key == "replay-button") {
                     this.oScene.scene.stop("Result");
                     this.oScene.scene.start("Level");
                 }
-                if(target.texture.key == "home-button") {
+                if (target.texture.key == "home-button") {
                     this.oScene.scene.stop();
                     this.oScene.scene.start("Home");
                 }
                 target.setInteractive();
             }
         });
-
+    }
+    resultAnimation() {
+        this.oScene.tweens.add({
+            targets: [this.oScene.container_buttons, this.oScene.container_scoreBoard],
+            y: 0,
+            ease: "bounce",
+            duration: 1300,
+        });
     }
 }

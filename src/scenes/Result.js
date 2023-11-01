@@ -23,49 +23,57 @@ class Result extends Phaser.Scene {
 		const background = this.add.image(960, 540, "background");
 		body.add(background);
 
+		// container_scoreBoard
+		const container_scoreBoard = this.add.container(0, -916);
+		body.add(container_scoreBoard);
+
 		// score_board
-		const score_board = this.add.image(960, 540, "score-board");
+		const score_board = this.add.image(960, 539, "score-board");
 		score_board.scaleX = 0.9;
 		score_board.scaleY = 0.9;
-		body.add(score_board);
+		container_scoreBoard.add(score_board);
 
 		// best_text
-		const best_text = this.add.image(960, 650, "best-text");
+		const best_text = this.add.image(960, 649, "best-text");
 		best_text.scaleX = 0.9;
 		best_text.scaleY = 0.9;
-		body.add(best_text);
+		container_scoreBoard.add(best_text);
 
 		// score_text
-		const score_text = this.add.image(960, 433, "score-text");
+		const score_text = this.add.image(960, 432, "score-text");
 		score_text.scaleX = 0.9;
 		score_text.scaleY = 0.9;
-		body.add(score_text);
+		container_scoreBoard.add(score_text);
 
 		// score
-		const score = this.add.text(960, 526, "", {});
+		const score = this.add.text(960, 525, "", {});
 		score.setOrigin(0.5, 0.5);
 		score.setStyle({ "color": "#FFCB4F", "fontFamily": "Skia", "fontSize": "66px" });
-		body.add(score);
+		container_scoreBoard.add(score);
 
 		// best_score
-		const best_score = this.add.text(960, 742, "", {});
+		const best_score = this.add.text(960, 741, "", {});
 		best_score.setOrigin(0.5, 0.5);
 		best_score.setStyle({ "color": "#FFCB4F", "fontFamily": "Skia", "fontSize": "66px" });
-		body.add(best_score);
+		container_scoreBoard.add(best_score);
+
+		// container_buttons
+		const container_buttons = this.add.container(0, 1080);
+		body.add(container_buttons);
 
 		// replay_button
-		const replay_button = this.add.image(1080, 987, "replay-button");
+		const replay_button = this.add.image(1080, 986, "replay-button");
 		replay_button.setInteractive(new Phaser.Geom.Circle(140, 120, 120), Phaser.Geom.Circle.Contains);
 		replay_button.scaleX = 0.5;
 		replay_button.scaleY = 0.5;
-		body.add(replay_button);
+		container_buttons.add(replay_button);
 
 		// home_button
-		const home_button = this.add.image(840, 987, "home-button");
+		const home_button = this.add.image(840, 986, "home-button");
 		home_button.setInteractive(new Phaser.Geom.Circle(140, 120, 120), Phaser.Geom.Circle.Contains);
 		home_button.scaleX = 0.5;
 		home_button.scaleY = 0.5;
-		body.add(home_button);
+		container_buttons.add(home_button);
 
 		this.background = background;
 		this.score_board = score_board;
@@ -73,8 +81,10 @@ class Result extends Phaser.Scene {
 		this.score_text = score_text;
 		this.score = score;
 		this.best_score = best_score;
+		this.container_scoreBoard = container_scoreBoard;
 		this.replay_button = replay_button;
 		this.home_button = home_button;
+		this.container_buttons = container_buttons;
 
 		this.events.emit("scene-awake");
 	}
@@ -91,10 +101,14 @@ class Result extends Phaser.Scene {
 	score;
 	/** @type {Phaser.GameObjects.Text} */
 	best_score;
+	/** @type {Phaser.GameObjects.Container} */
+	container_scoreBoard;
 	/** @type {Phaser.GameObjects.Image} */
 	replay_button;
 	/** @type {Phaser.GameObjects.Image} */
 	home_button;
+	/** @type {Phaser.GameObjects.Container} */
+	container_buttons;
 
 	/* START-USER-CODE */
 
@@ -116,6 +130,7 @@ class Result extends Phaser.Scene {
 		this.score.setText(localStorage.getItem('currentScore'));
 		this.best_score.setText(localStorage.getItem('circusSlamBestScore'));
 
+		this.oTweenManager.resultAnimation();
 		this.oTweenManager.buttonAnimation(this.replay_button);
 		this.replay_button.setInteractive();
 		this.replay_button.on("pointerover", () => {
