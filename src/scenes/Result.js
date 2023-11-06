@@ -117,6 +117,7 @@ class Result extends Phaser.Scene {
 
 		this.editorCreate();
 		this.oTweenManager = new TweenManager(this);
+		this.oSoundManager = new SoundManager(this);
 		if (window.innerWidth < 1050) {
 			this.background.setX(360);
 			this.replay_button.setX(360);

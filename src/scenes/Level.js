@@ -140,6 +140,7 @@ class Level extends Phaser.Scene {
 		this.input.keyboard.on("keydown", (event) => {
 			if (event.code == "Space") {
 				if (this.enableEffect) {
+					this.oSoundManager.playSound(this.oSoundManager.clickSound, false);
 					ball.body.setVelocityY(-1500);
 				}
 			}
@@ -147,12 +148,14 @@ class Level extends Phaser.Scene {
 
 		this.input.on("pointerdown", () => {
 			if (this.enableEffect) {
+				this.oSoundManager.playSound(this.oSoundManager.clickSound, false);
 				ball.body.setVelocityY(-1500);
 				ball.angle -= 1;
 			}
 		});
 	}
 	checkResult() {
+		this.oSoundManager.playSound(this.oSoundManager.gameOverSound, false);
 		clearInterval(this.interval);
 		if ((localStorage.getItem('circusSlamBestScore')) <= Number(this.nScore)) {
 			localStorage.setItem('circusSlamBestScore', Number(this.nScore));
@@ -164,11 +167,40 @@ class Level extends Phaser.Scene {
 		this.scene.stop("Level");
 		this.scene.start("Result");
 	}
+	setAudio() {
+		const isMusicOn = (flag) => {
+			// flag ? this.music_button.setTexture("music-on-button") : this.music_button.setTexture("music-off-button");
+			localStorage.setItem("isCircusSlamMusicOn", flag);
+			this.oSoundManager.backgroundMusic.setMute(!flag);
+			this.oSoundManager.playSound(this.oSoundManager.backgroundMusic, true);
+		}
+		const isSoundOn = (flag) => {
+			// flag ? this.sound_button.setTexture("sound-on-button") : this.sound_button.setTexture("sound-off-button");
+			localStorage.setItem('isCircusSlamSoundOn', flag);
+			this.oSoundManager.clickSound.setMute(!flag);
+			this.oSoundManager.ballCollisionSound.setMute(!flag);
+			this.oSoundManager.ballPassFromRingSound.setMute(!flag);
+			this.oSoundManager.gameOverSound.setMute(!flag);
+		}
+		// this.sound_button.setInteractive().on('pointerdown', () => {
+		// 	this.oSoundManager.playSound(this.oSoundManager.clickSound, false);
+		// 	isSoundOn(!JSON.parse(localStorage.getItem("isCircusSlamSoundOn")));
+		// });
+		// this.music_button.setInteractive().on('pointerdown', () => {
+		// 	this.oSoundManager.playSound(this.oSoundManager.clickSound, false);
+		// 	isMusicOn(!JSON.parse(localStorage.getItem("isCircusSlamMusicOn")));
+		// });
+		isMusicOn(JSON.parse(localStorage.getItem("isCircusSlamMusicOn")));
+		isSoundOn(JSON.parse(localStorage.getItem("isCircusSlamSoundOn")));
+	}
 	create() {
 		this.editorCreate();
 		this.gameStart = false;
 		this.gameOver = false;
 		this.index = 0;
+		this.nScore = 0;
+		localStorage.setItem('currentScore', 0);
+
 		if (window.innerWidth < 1050) {
 			this.score_bar.setX(360);
 			this.scoreTxt.setX(247);
@@ -176,9 +208,9 @@ class Level extends Phaser.Scene {
 			this.rectangle.setW(720).setX(360);
 		}
 		this.oTweenManager = new TweenManager(this);
-		this.nScore = 0;
-		localStorage.setItem('currentScore', 0);
+		this.oSoundManager = new SoundManager(this);
 
+		this.setAudio();
 		this.oTweenManager.buttonAnimation(this.pause_button);
 		this.oTweenManager.buttonAnimation(this.home_button);
 		this.pause_button.setInteractive();
@@ -191,6 +223,7 @@ class Level extends Phaser.Scene {
 			this.pause_button.setScale(0.5, 0.5);
 		});
 		this.pause_button.on("pointerdown", () => {
+			this.oSoundManager.playSound(this.oSoundManager.clickSound, false);
 			this.input.setDefaultCursor("default");
 			if (this.gameStart) {
 				this.enableEffect = false;
@@ -218,6 +251,7 @@ class Level extends Phaser.Scene {
 			this.home_button.setScale(0.5, 0.5);
 		});
 		this.home_button.on("pointerdown", () => {
+			this.oSoundManager.playSound(this.oSoundManager.clickSound, false);
 			this.input.setDefaultCursor("default");
 			this.oTweenManager.clickAnimation(this.home_button);
 		});
@@ -249,12 +283,14 @@ class Level extends Phaser.Scene {
 
 		this.scoreTxt.setText("Score: " + `0${this.nScore}`);
 		this.physics.add.collider(ball, this.ringGroup, (ball, ring) => {
+			this.oSoundManager.playSound(this.oSoundManager.ballCollisionSound, false);
 			ball.y < ring.body.y - 100 ? ball.body.setVelocityY(-300) : ball.body.setVelocityY(200);
 		});
 		this.physics.add.overlap(ball, this.colliderGroup, (ball, collider) => {
 			if (ball.y <= collider.y) {
 				collider.body.checkCollision.up = false;
 				collider.destroy();
+				this.oSoundManager.playSound(this.oSoundManager.ballPassFromRingSound, false);
 				this.container_lowerRings.list[this.index].setTexture("grey-lower");
 				this.container_upperRings.list[this.index].setTexture("grey-upper");
 				this.container_lowerRings.list[this.index].y += 6;
@@ -274,6 +310,7 @@ class Level extends Phaser.Scene {
 			}
 		});
 		this.surfacecollider = this.physics.add.collider(ball, this.rectangle, () => {
+			this.oSoundManager.playSound(this.oSoundManager.clickSound, false);
 			ball.body.setVelocityY(-1200);
 			this.input.enabled = false;
 			this.input.keyboard.enabled = false;

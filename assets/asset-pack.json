@@ -2,9 +2,37 @@
     "section1": {
         "files": [
             {
+                "url": [
+                    "assets/sounds/background-music.mp3"
+                ],
+                "type": "audio",
+                "key": "background-music"
+            },
+            {
+                "url": [
+                    "assets/sounds/ballCollision-sound.mp3"
+                ],
+                "type": "audio",
+                "key": "ballCollision-sound"
+            },
+            {
+                "url": [
+                    "assets/sounds/ballPassFromRing-sound.mp3"
+                ],
+                "type": "audio",
+                "key": "ballPassFromRing-sound"
+            },
+            {
                 "url": "assets/images/best-text.png",
                 "type": "image",
                 "key": "best-text"
+            },
+            {
+                "url": [
+                    "assets/sounds/click-sound.mp3"
+                ],
+                "type": "audio",
+                "key": "click-sound"
             },
             {
                 "url": "assets/images/first-click.png",
@@ -15,6 +43,13 @@
                 "url": "src/scripts/GameManager.js",
                 "type": "script",
                 "key": "GameManager"
+            },
+            {
+                "url": [
+                    "assets/sounds/gameOver-sound.mp3"
+                ],
+                "type": "audio",
+                "key": "gameOver-sound"
             },
             {
                 "url": "assets/images/grey-lower.png",

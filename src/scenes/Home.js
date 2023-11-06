@@ -42,11 +42,40 @@ class Home extends Phaser.Scene {
 	/* START-USER-CODE */
 
 	// Write your code here
+	setAudio() {
+		const isMusicOn = (flag) => {
+			// flag ? this.music_button.setTexture("music-on-button") : this.music_button.setTexture("music-off-button");
+			localStorage.setItem("isCircusSlamMusicOn", flag);
+			this.oSoundManager.backgroundMusic.setMute(!flag);
+			this.oSoundManager.playSound(this.oSoundManager.backgroundMusic, true);
+		}
+		const isSoundOn = (flag) => {
+			// flag ? this.sound_button.setTexture("sound-on-button") : this.sound_button.setTexture("sound-off-button");
+			localStorage.setItem('isCircusSlamSoundOn', flag);
+			this.oSoundManager.clickSound.setMute(!flag);
+			this.oSoundManager.ballCollisionSound.setMute(!flag);
+			this.oSoundManager.ballPassFromRingSound.setMute(!flag);
+			this.oSoundManager.gameOverSound.setMute(!flag);
+		}
+		// this.sound_button.setInteractive().on('pointerdown', () => {
+		// 	this.oSoundManager.playSound(this.oSoundManager.clickSound, false);
+		// 	isSoundOn(!JSON.parse(localStorage.getItem("isCircusSlamSoundOn")));
+		// });
+		// this.music_button.setInteractive().on('pointerdown', () => {
+		// 	this.oSoundManager.playSound(this.oSoundManager.clickSound, false);
+		// 	isMusicOn(!JSON.parse(localStorage.getItem("isCircusSlamMusicOn")));
+		// });
+		isMusicOn(JSON.parse(localStorage.getItem("isCircusSlamMusicOn")));
+		isSoundOn(JSON.parse(localStorage.getItem("isCircusSlamSoundOn")));
+	}
 
 	create() {
 
 		this.editorCreate();
 		this.oTweenManager = new TweenManager(this);
+		this.oSoundManager = new SoundManager(this);
+
+		this.setAudio();
 		this.logoPrefab.ball.setVisible(true);
 		this.logoPrefab.swing_img.setVisible(true);
 		let shape = this.make.graphics();
@@ -73,10 +102,12 @@ class Home extends Phaser.Scene {
 		});
 		this.play_button.on("pointerdown", () => {
 			this.input.setDefaultCursor("default");
+			this.oSoundManager.playSound(this.oSoundManager.clickSound, false);
 			this.oTweenManager.clickAnimation(this.play_button);
 		});
 		this.physics.add.collider(this.play_button, this.rectangle, ()=>{
 			this.play_button.body.setBounce(0.5);
+			this.oSoundManager.playSound(this.oSoundManager.ballCollisionSound, false);
 		});
 	}
 

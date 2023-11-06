@@ -61,6 +61,8 @@ const init = () => {
 		});
 	}
 	localStorage.setItem('circusSlamBestScore', localStorage.getItem('circusSlamBestScore') == undefined ? 0 : localStorage.getItem('circusSlamBestScore'));
+	localStorage.setItem("isCircusSlamSoundOn", true);
+	localStorage.setItem("isCircusSlamMusicOn", true);
 	game.scene.add("Preload", Preload);
 	game.scene.add("Level", Level);
 	game.scene.add("Boot", Boot, true);

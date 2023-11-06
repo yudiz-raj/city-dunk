@@ -113,6 +113,7 @@ class TweenManager {
             yoyo: true,
             onComplete: () => {
                 if (target.texture.key == "start-button") {
+                    this.oScene.oSoundManager.stopSound(this.oScene.oSoundManager.backgroundMusic, false);
                     this.oScene.tweens.add({
                         targets: this.oScene.play_button,
                         y: 1200,
@@ -124,10 +125,12 @@ class TweenManager {
                     });
                 }
                 if (target.texture.key == "replay-button") {
+                    this.oScene.oSoundManager.stopSound(this.oScene.oSoundManager.backgroundMusic, false);
                     this.oScene.scene.stop("Result");
                     this.oScene.scene.start("Level");
                 }
                 if (target.texture.key == "home-button") {
+                    this.oScene.oSoundManager.stopSound(this.oScene.oSoundManager.backgroundMusic, false);
                     this.oScene.scene.stop();
                     this.oScene.scene.start("Home");
                 }
